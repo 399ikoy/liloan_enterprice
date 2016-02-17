@@ -1,0 +1,83 @@
+﻿@model SIS.Models.Supplier_Info
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Supplier_Info</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.supplier_info_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.supplier_info_id)
+            @Html.ValidationMessageFor(model => model.supplier_info_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.supplier_name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.supplier_name)
+            @Html.ValidationMessageFor(model => model.supplier_name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.supplier_contact_info)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.supplier_contact_info)
+            @Html.ValidationMessageFor(model => model.supplier_contact_info)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.supplier_contact_person)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.supplier_contact_person)
+            @Html.ValidationMessageFor(model => model.supplier_contact_person)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.supplier_address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.supplier_address)
+            @Html.ValidationMessageFor(model => model.supplier_address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.company_name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.company_name)
+            @Html.ValidationMessageFor(model => model.company_name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.active_flag)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.active_flag)
+            @Html.ValidationMessageFor(model => model.active_flag)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

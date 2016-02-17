@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SIS_DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="sis_dbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Account_Info" EntityType="SIS_DBModel.Account_Info" />
+    <EntitySet Name="Categories" EntityType="SIS_DBModel.Category" />
+    <EntitySet Name="Deliveries" EntityType="SIS_DBModel.Delivery" />
+    <EntitySet Name="Expenses" EntityType="SIS_DBModel.Expens" />
+    <EntitySet Name="Product_Info" EntityType="SIS_DBModel.Product_Info" />
+    <EntitySet Name="Product_Purchase" EntityType="SIS_DBModel.Product_Purchase" />
+    <EntitySet Name="Product_Sales" EntityType="SIS_DBModel.Product_Sales" />
+    <EntitySet Name="Purchase_Transactions" EntityType="SIS_DBModel.Purchase_Transactions" />
+    <EntitySet Name="Receipts" EntityType="SIS_DBModel.Receipt" />
+    <EntitySet Name="Staff_Info" EntityType="SIS_DBModel.Staff_Info" />
+    <EntitySet Name="Sub_Category" EntityType="SIS_DBModel.Sub_Category" />
+    <EntitySet Name="Supplier_Info" EntityType="SIS_DBModel.Supplier_Info" />
+    <EntitySet Name="System_Menu_Roles" EntityType="SIS_DBModel.System_Menu_Roles" />
+    <EntitySet Name="System_Menus" EntityType="SIS_DBModel.System_Menus" />
+    <EntitySet Name="Units" EntityType="SIS_DBModel.Unit" />
+    <EntitySet Name="Current_Order_Items" EntityType="SIS_DBModel.Current_Order_Items" />
+    <EntitySet Name="Expenses_Type_vw" EntityType="SIS_DBModel.Expenses_Type_vw" />
+    <EntitySet Name="Out_Of_Stock_Transactions_vw" EntityType="SIS_DBModel.Out_Of_Stock_Transactions_vw" />
+    <EntitySet Name="Out_Of_Stock_vw" EntityType="SIS_DBModel.Out_Of_Stock_vw" />
+    <EntitySet Name="Product_Info_vw" EntityType="SIS_DBModel.Product_Info_vw" />
+    <EntitySet Name="PT_OrderedList_vw" EntityType="SIS_DBModel.PT_OrderedList_vw" />
+    <EntitySet Name="Purchase_Transactions_vw" EntityType="SIS_DBModel.Purchase_Transactions_vw" />
+    <EntitySet Name="Reff_Out_Of_Stock_vw" EntityType="SIS_DBModel.Reff_Out_Of_Stock_vw" />
+    <AssociationSet Name="FK_Staff_Info_ToTable" Association="SIS_DBModel.FK_Staff_Info_ToTable">
+      <End Role="Account_Info" EntitySet="Account_Info" />
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_System_Menu_Roles_ToTable" Association="SIS_DBModel.FK_System_Menu_Roles_ToTable">
+      <End Role="Account_Info" EntitySet="Account_Info" />
+      <End Role="System_Menu_Roles" EntitySet="System_Menu_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cat" Association="SIS_DBModel.FK_cat">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sub_Category_ToTable" Association="SIS_DBModel.FK_Sub_Category_ToTable">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Sub_Category" EntitySet="Sub_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Delivery_ToTable" Association="SIS_DBModel.FK_Delivery_ToTable">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Delivery" EntitySet="Deliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_receipt" Association="SIS_DBModel.FK_receipt">
+      <End Role="Receipt" EntitySet="Receipts" />
+      <End Role="Delivery" EntitySet="Deliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expenses_ToTable" Association="SIS_DBModel.FK_Expenses_ToTable">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Expenses" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expenses_ToTable_1" Association="SIS_DBModel.FK_Expenses_ToTable_1">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Expenses" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Info_ToTable" Association="SIS_DBModel.FK_Product_Info_ToTable">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Info_ToTable_1" Association="SIS_DBModel.FK_Product_Info_ToTable_1">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Info_ToTable_2" Association="SIS_DBModel.FK_Product_Info_ToTable_2">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Purchase_ToTable" Association="SIS_DBModel.FK_Product_Purchase_ToTable">
+      <End Role="Product_Info" EntitySet="Product_Info" />
+      <End Role="Product_Purchase" EntitySet="Product_Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Sales_ToTable" Association="SIS_DBModel.FK_Product_Sales_ToTable">
+      <End Role="Product_Info" EntitySet="Product_Info" />
+      <End Role="Product_Sales" EntitySet="Product_Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sub_cat" Association="SIS_DBModel.FK_sub_cat">
+      <End Role="Sub_Category" EntitySet="Sub_Category" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier" Association="SIS_DBModel.FK_Supplier">
+      <End Role="Supplier_Info" EntitySet="Supplier_Info" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Purchase_ToTable_1" Association="SIS_DBModel.FK_Product_Purchase_ToTable_1">
+      <End Role="Purchase_Transactions" EntitySet="Purchase_Transactions" />
+      <End Role="Product_Purchase" EntitySet="Product_Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Sales_ToTable_1" Association="SIS_DBModel.FK_Product_Sales_ToTable_1">
+      <End Role="Receipt" EntitySet="Receipts" />
+      <End Role="Product_Sales" EntitySet="Product_Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Sales_ToTable_2" Association="SIS_DBModel.FK_Product_Sales_ToTable_2">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Product_Sales" EntitySet="Product_Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Transactions_ToTable" Association="SIS_DBModel.FK_Purchase_Transactions_ToTable">
+      <End Role="Supplier_Info" EntitySet="Supplier_Info" />
+      <End Role="Purchase_Transactions" EntitySet="Purchase_Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Transactions_ToTable_1" Association="SIS_DBModel.FK_Purchase_Transactions_ToTable_1">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Purchase_Transactions" EntitySet="Purchase_Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Receipt_ToTable" Association="SIS_DBModel.FK_Receipt_ToTable">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Receipt" EntitySet="Receipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_System_Menu_Roles_ToTable_1" Association="SIS_DBModel.FK_System_Menu_Roles_ToTable_1">
+      <End Role="System_Menus" EntitySet="System_Menus" />
+      <End Role="System_Menu_Roles" EntitySet="System_Menu_Roles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account_Info">
+    <Key>
+      <PropertyRef Name="account_info_id" />
+    </Key>
+    <Property Name="account_info_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="user_type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Staff_Info" Relationship="SIS_DBModel.FK_Staff_Info_ToTable" FromRole="Account_Info" ToRole="Staff_Info" />
+    <NavigationProperty Name="System_Menu_Roles" Relationship="SIS_DBModel.FK_System_Menu_Roles_ToTable" FromRole="Account_Info" ToRole="System_Menu_Roles" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_by" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="updated_by" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="updated_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Product_Info" Relationship="SIS_DBModel.FK_cat" FromRole="Category" ToRole="Product_Info" />
+    <NavigationProperty Name="Sub_Category" Relationship="SIS_DBModel.FK_Sub_Category_ToTable" FromRole="Category" ToRole="Sub_Category" />
+  </EntityType>
+  <EntityType Name="Delivery">
+    <Key>
+      <PropertyRef Name="delivery_id" />
+    </Key>
+    <Property Name="delivery_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="receipt_id" Type="Int32" />
+    <Property Name="delivery_date" Type="DateTime" Precision="3" />
+    <Property Name="customer_location" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="delivery_route" Type="Int32" />
+    <Property Name="customer_contact" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="staff_id" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Staff_Info" Relationship="SIS_DBModel.FK_Delivery_ToTable" FromRole="Delivery" ToRole="Staff_Info" />
+    <NavigationProperty Name="Receipt" Relationship="SIS_DBModel.FK_receipt" FromRole="Delivery" ToRole="Receipt" />
+  </EntityType>
+  <EntityType Name="Expens">
+    <Key>
+      <PropertyRef Name="expenses_id" />
+    </Key>
+    <Property Name="expenses_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="expenses_type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="transaction_date" Type="DateTime" Precision="3" />
+    <Property Name="expenses_amount" Type="Double" />
+    <Property Name="remarks" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <Property Name="staff_id" Type="Int32" />
+    <NavigationProperty Name="Staff_Info" Relationship="SIS_DBModel.FK_Expenses_ToTable" FromRole="Expenses" ToRole="Staff_Info" />
+    <NavigationProperty Name="Staff_Info1" Relationship="SIS_DBModel.FK_Expenses_ToTable_1" FromRole="Expenses" ToRole="Staff_Info" />
+  </EntityType>
+  <EntityType Name="Product_Info">
+    <Key>
+      <PropertyRef Name="product_info_id" />
+    </Key>
+    <Property Name="product_info_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="product_desc" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="sub_category_id" Type="Int32" />
+    <Property Name="product_orig_price" Type="Double" />
+    <Property Name="product_sold_price" Type="Double" />
+    <Property Name="unit_id" Type="Int32" />
+    <Property Name="product_code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_qty" Type="Double" />
+    <Property Name="product_cut_off" Type="Double" />
+    <Property Name="product_remarks" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="supplier_info_id" Type="Int32" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="SIS_DBModel.FK_cat" FromRole="Product_Info" ToRole="Category" />
+    <NavigationProperty Name="Unit" Relationship="SIS_DBModel.FK_Product_Info_ToTable" FromRole="Product_Info" ToRole="Unit" />
+    <NavigationProperty Name="Staff_Info" Relationship="SIS_DBModel.FK_Product_Info_ToTable_1" FromRole="Product_Info" ToRole="Staff_Info" />
+    <NavigationProperty Name="Staff_Info1" Relationship="SIS_DBModel.FK_Product_Info_ToTable_2" FromRole="Product_Info" ToRole="Staff_Info" />
+    <NavigationProperty Name="Product_Purchase" Relationship="SIS_DBModel.FK_Product_Purchase_ToTable" FromRole="Product_Info" ToRole="Product_Purchase" />
+    <NavigationProperty Name="Product_Sales" Relationship="SIS_DBModel.FK_Product_Sales_ToTable" FromRole="Product_Info" ToRole="Product_Sales" />
+    <NavigationProperty Name="Sub_Category" Relationship="SIS_DBModel.FK_sub_cat" FromRole="Product_Info" ToRole="Sub_Category" />
+    <NavigationProperty Name="Supplier_Info" Relationship="SIS_DBModel.FK_Supplier" FromRole="Product_Info" ToRole="Supplier_Info" />
+  </EntityType>
+  <EntityType Name="Product_Purchase">
+    <Key>
+      <PropertyRef Name="product_purchase_id" />
+    </Key>
+    <Property Name="product_purchase_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="product_info_id" Type="Int32" />
+    <Property Name="purchase_qty" Type="Double" />
+    <Property Name="purchase_new_price" Type="Double" />
+    <Property Name="active_flag" Type="Boolean" />
+    <Property Name="pt_id" Type="Int32" />
+    <NavigationProperty Name="Product_Info" Relationship="SIS_DBModel.FK_Product_Purchase_ToTable" FromRole="Product_Purchase" ToRole="Product_Info" />
+    <NavigationProperty Name="Purchase_Transactions" Relationship="SIS_DBModel.FK_Product_Purchase_ToTable_1" FromRole="Product_Purchase" ToRole="Purchase_Transactions" />
+  </EntityType>
+  <EntityType Name="Product_Sales">
+    <Key>
+      <PropertyRef Name="product_sales_id" />
+    </Key>
+    <Property Name="product_sales_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="product_info_id" Type="Int32" />
+    <Property Name="quantity_sold" Type="Double" />
+    <Property Name="receipt_id" Type="Int32" />
+    <Property Name="sold_by" Type="Int32" />
+    <Property Name="sold_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Product_Info" Relationship="SIS_DBModel.FK_Product_Sales_ToTable" FromRole="Product_Sales" ToRole="Product_Info" />
+    <NavigationProperty Name="Receipt" Relationship="SIS_DBModel.FK_Product_Sales_ToTable_1" FromRole="Product_Sales" ToRole="Receipt" />
+    <NavigationProperty Name="Staff_Info" Relationship="SIS_DBModel.FK_Product_Sales_ToTable_2" FromRole="Product_Sales" ToRole="Staff_Info" />
+  </EntityType>
+  <EntityType Name="Purchase_Transactions">
+    <Key>
+      <PropertyRef Name="pt_id" />
+    </Key>
+    <Property Name="pt_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="purchase_name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="purchase_date" Type="DateTime" Precision="3" />
+    <Property Name="supplier_id" Type="Int32" />
+    <Property Name="expected_date" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="order_by" Type="Int32" />
+    <NavigationProperty Name="Product_Purchase" Relationship="SIS_DBModel.FK_Product_Purchase_ToTable_1" FromRole="Purchase_Transactions" ToRole="Product_Purchase" />
+    <NavigationProperty Name="Supplier_Info" Relationship="SIS_DBModel.FK_Purchase_Transactions_ToTable" FromRole="Purchase_Transactions" ToRole="Supplier_Info" />
+    <NavigationProperty Name="Staff_Info" Relationship="SIS_DBModel.FK_Purchase_Transactions_ToTable_1" FromRole="Purchase_Transactions" ToRole="Staff_Info" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="receipt_id" />
+    </Key>
+    <Property Name="receipt_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="shipping_status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="payment_status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="discount" Type="Double" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Deliveries" Relationship="SIS_DBModel.FK_receipt" FromRole="Receipt" ToRole="Delivery" />
+    <NavigationProperty Name="Product_Sales" Relationship="SIS_DBModel.FK_Product_Sales_ToTable_1" FromRole="Receipt" ToRole="Product_Sales" />
+    <NavigationProperty Name="Staff_Info" Relationship="SIS_DBModel.FK_Receipt_ToTable" FromRole="Receipt" ToRole="Staff_Info" />
+  </EntityType>
+  <EntityType Name="Staff_Info">
+    <Key>
+      <PropertyRef Name="staff_id" />
+    </Key>
+    <Property Name="staff_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="staff_fname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="staff_lname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="account_info_id" Type="Int32" />
+    <Property Name="staff_monthly_paid" Type="Double" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Account_Info" Relationship="SIS_DBModel.FK_Staff_Info_ToTable" FromRole="Staff_Info" ToRole="Account_Info" />
+    <NavigationProperty Name="Deliveries" Relationship="SIS_DBModel.FK_Delivery_ToTable" FromRole="Staff_Info" ToRole="Delivery" />
+    <NavigationProperty Name="Expenses" Relationship="SIS_DBModel.FK_Expenses_ToTable" FromRole="Staff_Info" ToRole="Expenses" />
+    <NavigationProperty Name="Expenses1" Relationship="SIS_DBModel.FK_Expenses_ToTable_1" FromRole="Staff_Info" ToRole="Expenses" />
+    <NavigationProperty Name="Product_Info" Relationship="SIS_DBModel.FK_Product_Info_ToTable_1" FromRole="Staff_Info" ToRole="Product_Info" />
+    <NavigationProperty Name="Product_Info1" Relationship="SIS_DBModel.FK_Product_Info_ToTable_2" FromRole="Staff_Info" ToRole="Product_Info" />
+    <NavigationProperty Name="Product_Sales" Relationship="SIS_DBModel.FK_Product_Sales_ToTable_2" FromRole="Staff_Info" ToRole="Product_Sales" />
+    <NavigationProperty Name="Purchase_Transactions" Relationship="SIS_DBModel.FK_Purchase_Transactions_ToTable_1" FromRole="Staff_Info" ToRole="Purchase_Transactions" />
+    <NavigationProperty Name="Receipts" Relationship="SIS_DBModel.FK_Receipt_ToTable" FromRole="Staff_Info" ToRole="Receipt" />
+  </EntityType>
+  <EntityType Name="Sub_Category">
+    <Key>
+      <PropertyRef Name="sub_category_id" />
+    </Key>
+    <Property Name="sub_category_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="sub_category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_by" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="updated_by" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="updated_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <Property Name="category_id" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="SIS_DBModel.FK_Sub_Category_ToTable" FromRole="Sub_Category" ToRole="Category" />
+    <NavigationProperty Name="Product_Info" Relationship="SIS_DBModel.FK_sub_cat" FromRole="Sub_Category" ToRole="Product_Info" />
+  </EntityType>
+  <EntityType Name="Supplier_Info">
+    <Key>
+      <PropertyRef Name="supplier_info_id" />
+    </Key>
+    <Property Name="supplier_info_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="supplier_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="supplier_contact_info" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="supplier_contact_person" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="supplier_address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="company_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Product_Info" Relationship="SIS_DBModel.FK_Supplier" FromRole="Supplier_Info" ToRole="Product_Info" />
+    <NavigationProperty Name="Purchase_Transactions" Relationship="SIS_DBModel.FK_Purchase_Transactions_ToTable" FromRole="Supplier_Info" ToRole="Purchase_Transactions" />
+  </EntityType>
+  <EntityType Name="System_Menu_Roles">
+    <Key>
+      <PropertyRef Name="system_menu_roles_id" />
+    </Key>
+    <Property Name="system_menu_roles_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="account_info_id" Type="Int32" />
+    <Property Name="system_menus_id" Type="Int32" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Account_Info" Relationship="SIS_DBModel.FK_System_Menu_Roles_ToTable" FromRole="System_Menu_Roles" ToRole="Account_Info" />
+    <NavigationProperty Name="System_Menus" Relationship="SIS_DBModel.FK_System_Menu_Roles_ToTable_1" FromRole="System_Menu_Roles" ToRole="System_Menus" />
+  </EntityType>
+  <EntityType Name="System_Menus">
+    <Key>
+      <PropertyRef Name="system_menus_id" />
+    </Key>
+    <Property Name="system_menus_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="sm_description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="sm_action_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="sm_controller" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="System_Menu_Roles" Relationship="SIS_DBModel.FK_System_Menu_Roles_ToTable_1" FromRole="System_Menus" ToRole="System_Menu_Roles" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="unit_id" />
+    </Key>
+    <Property Name="unit_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="unit_code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="unit_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_by" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" />
+    <NavigationProperty Name="Product_Info" Relationship="SIS_DBModel.FK_Product_Info_ToTable" FromRole="Unit" ToRole="Product_Info" />
+  </EntityType>
+  <EntityType Name="Current_Order_Items">
+    <Key>
+      <PropertyRef Name="product_purchase_id" />
+    </Key>
+    <Property Name="product_purchase_id" Type="Int32" Nullable="false" />
+    <Property Name="product_info_id" Type="Int32" />
+    <Property Name="purchase_qty" Type="Double" />
+    <Property Name="active_flag" Type="Boolean" />
+    <Property Name="product_desc" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="sub_category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_orig_price" Type="Double" />
+    <Property Name="product_qty" Type="Double" />
+    <Property Name="unit_code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="Expenses_Type_vw">
+    <Key>
+      <PropertyRef Name="expenses_type" />
+    </Key>
+    <Property Name="expenses_type" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Out_Of_Stock_Transactions_vw">
+    <Key>
+      <PropertyRef Name="product_info_id" />
+      <PropertyRef Name="active_flag" />
+    </Key>
+    <Property Name="product_info_id" Type="Int32" Nullable="false" />
+    <Property Name="product_code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_desc" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="sub_category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_orig_price" Type="Double" />
+    <Property Name="product_qty" Type="Double" />
+    <Property Name="unit_code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="active_flag" Type="Boolean" Nullable="false" />
+    <Property Name="pt_id" Type="Int32" />
+    <Property Name="product_purchase_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Out_Of_Stock_vw">
+    <Key>
+      <PropertyRef Name="product_info_id" />
+      <PropertyRef Name="active_flag" />
+    </Key>
+    <Property Name="product_info_id" Type="Int32" Nullable="false" />
+    <Property Name="product_code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_desc" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="sub_category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_orig_price" Type="Double" />
+    <Property Name="product_qty" Type="Double" />
+    <Property Name="unit_code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="active_flag" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product_Info_vw">
+    <Key>
+      <PropertyRef Name="product_info_id" />
+      <PropertyRef Name="active_flag" />
+    </Key>
+    <Property Name="product_info_id" Type="Int32" Nullable="false" />
+    <Property Name="product_desc" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="sub_category_id" Type="Int32" />
+    <Property Name="sub_category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_orig_price" Type="Double" />
+    <Property Name="product_sold_price" Type="Double" />
+    <Property Name="unit_id" Type="Int32" />
+    <Property Name="unit_code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="unit_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_qty" Type="Double" />
+    <Property Name="product_cut_off" Type="Double" />
+    <Property Name="product_remarks" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="supplier_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_fname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="created_lname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="updated_fname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="updated_lname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="updated_by" Type="Int32" />
+    <Property Name="updated_date" Type="DateTime" Precision="3" />
+    <Property Name="active_flag" Type="Boolean" Nullable="false" />
+    <Property Name="complete_info" Type="String" MaxLength="203" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="PT_OrderedList_vw">
+    <Key>
+      <PropertyRef Name="pt_id" />
+    </Key>
+    <Property Name="pt_id" Type="Int32" Nullable="false" />
+    <Property Name="purchase_name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="expected_date" Type="DateTime" Precision="3" />
+    <Property Name="purchase_date" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="supplier_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="staff_fname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="staff_lname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="totalPT" Type="Double" />
+    <Property Name="no_item" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Purchase_Transactions_vw">
+    <Key>
+      <PropertyRef Name="pt_id" />
+      <PropertyRef Name="product_purchase_id" />
+    </Key>
+    <Property Name="pt_id" Type="Int32" Nullable="false" />
+    <Property Name="purchase_name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="expected_date" Type="DateTime" Precision="3" />
+    <Property Name="purchase_date" Type="DateTime" Precision="3" />
+    <Property Name="product_purchase_id" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_info_id" Type="Int32" />
+    <Property Name="purchase_qty" Type="Double" />
+    <Property Name="purchase_new_price" Type="Double" />
+    <Property Name="active_flag" Type="Boolean" />
+    <Property Name="product_code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="product_desc" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="sub_category_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Reff_Out_Of_Stock_vw">
+    <Key>
+      <PropertyRef Name="product_purchase_id" />
+    </Key>
+    <Property Name="product_purchase_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="product_info_id" Type="Int32" />
+    <Property Name="purchase_qty" Type="Double" />
+    <Property Name="purchase_new_price" Type="Double" />
+    <Property Name="active_flag" Type="Boolean" />
+    <Property Name="pt_id" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_Staff_Info_ToTable">
+    <End Role="Account_Info" Type="SIS_DBModel.Account_Info" Multiplicity="0..1" />
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account_Info">
+        <PropertyRef Name="account_info_id" />
+      </Principal>
+      <Dependent Role="Staff_Info">
+        <PropertyRef Name="account_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_System_Menu_Roles_ToTable">
+    <End Role="Account_Info" Type="SIS_DBModel.Account_Info" Multiplicity="0..1" />
+    <End Role="System_Menu_Roles" Type="SIS_DBModel.System_Menu_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account_Info">
+        <PropertyRef Name="account_info_id" />
+      </Principal>
+      <Dependent Role="System_Menu_Roles">
+        <PropertyRef Name="account_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cat">
+    <End Role="Category" Type="SIS_DBModel.Category" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="SIS_DBModel.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sub_Category_ToTable">
+    <End Role="Category" Type="SIS_DBModel.Category" Multiplicity="0..1" />
+    <End Role="Sub_Category" Type="SIS_DBModel.Sub_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Sub_Category">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Delivery_ToTable">
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="0..1" />
+    <End Role="Delivery" Type="SIS_DBModel.Delivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_receipt">
+    <End Role="Receipt" Type="SIS_DBModel.Receipt" Multiplicity="0..1" />
+    <End Role="Delivery" Type="SIS_DBModel.Delivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Receipt">
+        <PropertyRef Name="receipt_id" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="receipt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expenses_ToTable">
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="0..1" />
+    <End Role="Expenses" Type="SIS_DBModel.Expens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Expenses">
+        <PropertyRef Name="staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expenses_ToTable_1">
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="0..1" />
+    <End Role="Expenses" Type="SIS_DBModel.Expens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Expenses">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Info_ToTable">
+    <End Role="Unit" Type="SIS_DBModel.Unit" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="SIS_DBModel.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="unit_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="unit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Info_ToTable_1">
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="SIS_DBModel.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Info_ToTable_2">
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="SIS_DBModel.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="updated_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Purchase_ToTable">
+    <End Role="Product_Info" Type="SIS_DBModel.Product_Info" Multiplicity="0..1" />
+    <End Role="Product_Purchase" Type="SIS_DBModel.Product_Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Info">
+        <PropertyRef Name="product_info_id" />
+      </Principal>
+      <Dependent Role="Product_Purchase">
+        <PropertyRef Name="product_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Sales_ToTable">
+    <End Role="Product_Info" Type="SIS_DBModel.Product_Info" Multiplicity="0..1" />
+    <End Role="Product_Sales" Type="SIS_DBModel.Product_Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Info">
+        <PropertyRef Name="product_info_id" />
+      </Principal>
+      <Dependent Role="Product_Sales">
+        <PropertyRef Name="product_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sub_cat">
+    <End Role="Sub_Category" Type="SIS_DBModel.Sub_Category" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="SIS_DBModel.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sub_Category">
+        <PropertyRef Name="sub_category_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="sub_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier">
+    <End Role="Supplier_Info" Type="SIS_DBModel.Supplier_Info" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="SIS_DBModel.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier_Info">
+        <PropertyRef Name="supplier_info_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="supplier_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Purchase_ToTable_1">
+    <End Role="Purchase_Transactions" Type="SIS_DBModel.Purchase_Transactions" Multiplicity="0..1" />
+    <End Role="Product_Purchase" Type="SIS_DBModel.Product_Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase_Transactions">
+        <PropertyRef Name="pt_id" />
+      </Principal>
+      <Dependent Role="Product_Purchase">
+        <PropertyRef Name="pt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Sales_ToTable_1">
+    <End Role="Receipt" Type="SIS_DBModel.Receipt" Multiplicity="0..1" />
+    <End Role="Product_Sales" Type="SIS_DBModel.Product_Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Receipt">
+        <PropertyRef Name="receipt_id" />
+      </Principal>
+      <Dependent Role="Product_Sales">
+        <PropertyRef Name="receipt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Sales_ToTable_2">
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="0..1" />
+    <End Role="Product_Sales" Type="SIS_DBModel.Product_Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Product_Sales">
+        <PropertyRef Name="sold_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Transactions_ToTable">
+    <End Role="Supplier_Info" Type="SIS_DBModel.Supplier_Info" Multiplicity="0..1" />
+    <End Role="Purchase_Transactions" Type="SIS_DBModel.Purchase_Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier_Info">
+        <PropertyRef Name="supplier_info_id" />
+      </Principal>
+      <Dependent Role="Purchase_Transactions">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Transactions_ToTable_1">
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="0..1" />
+    <End Role="Purchase_Transactions" Type="SIS_DBModel.Purchase_Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Purchase_Transactions">
+        <PropertyRef Name="order_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Receipt_ToTable">
+    <End Role="Staff_Info" Type="SIS_DBModel.Staff_Info" Multiplicity="0..1" />
+    <End Role="Receipt" Type="SIS_DBModel.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_System_Menu_Roles_ToTable_1">
+    <End Role="System_Menus" Type="SIS_DBModel.System_Menus" Multiplicity="0..1" />
+    <End Role="System_Menu_Roles" Type="SIS_DBModel.System_Menu_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="System_Menus">
+        <PropertyRef Name="system_menus_id" />
+      </Principal>
+      <Dependent Role="System_Menu_Roles">
+        <PropertyRef Name="system_menus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

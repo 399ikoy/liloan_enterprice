@@ -1,0 +1,69 @@
+﻿@model SIS.Models.Staff_Info
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.account_info_id)
+    @Html.HiddenFor(model => model.staff_id)
+
+    <fieldset>
+        <legend>Staff_Info</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.staff_id)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.staff_id)
+            @Html.ValidationMessageFor(model => model.staff_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.staff_fname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.staff_fname)
+            @Html.ValidationMessageFor(model => model.staff_fname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.staff_lname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.staff_lname)
+            @Html.ValidationMessageFor(model => model.staff_lname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.staff_monthly_paid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.staff_monthly_paid)
+            @Html.ValidationMessageFor(model => model.staff_monthly_paid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.active_flag)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.active_flag)
+            @Html.ValidationMessageFor(model => model.active_flag)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="65bbd32ed3d547e5bb96c91273bd2cf5" Name="Diagram1">
+        <EntityTypeShape EntityType="sis_dbModel.Account_Info" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Category" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Delivery" Width="1.5" PointX="7.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Expens" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Product_Info" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Product_Purchase" Width="1.5" PointX="10.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Product_Sales" Width="1.5" PointX="10.5" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Purchase_Transactions" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Receipt" Width="1.5" PointX="5.25" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Staff_Info" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Sub_Category" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Supplier_Info" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.System_Menu_Roles" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.System_Menus" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Unit" Width="1.5" PointX="6" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Current_Order_Items" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Expenses_Type_vw" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Out_Of_Stock_Transactions_vw" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Out_Of_Stock_vw" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Product_Info_vw" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.PT_OrderedList_vw" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Purchase_Transactions_vw" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sis_dbModel.Reff_Out_Of_Stock_vw" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="sis_dbModel.FK_Staff_Info_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_System_Menu_Roles_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_cat" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Sub_Category_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Delivery_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_receipt" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Expenses_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Expenses_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Product_Info_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Product_Info_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Product_Info_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Product_Purchase_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Product_Sales_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_sub_cat" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Product_Purchase_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Product_Sales_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Product_Sales_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Purchase_Transactions_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Purchase_Transactions_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_Receipt_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="sis_dbModel.FK_System_Menu_Roles_ToTable_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

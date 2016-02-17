@@ -1,0 +1,266 @@
+﻿@model PagedList.IPagedList<SIS.Models.Unit>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<meta charset="utf-8">
+<link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".editModal").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-edit").dialog({
+                title: 'Edit Master List Information',
+                autoOpen: false,
+                resizable: false,
+                height: 500,
+                width: 700,
+                show: { effect: 'drop', direction: "up" },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) {
+                    $(this).load(url);
+
+                },
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).dialog('close');
+                }
+
+            });
+
+            $("#dialog-edit").dialog('open');
+            return false;
+        });
+
+        $(".deleteModal").live("click", function (e) {
+        	var url = $(this).attr('href');
+        	$("#dialog-confirm").dialog({
+        		title: 'Are you sure you want to delete?',
+
+        		autoOpen: false,
+        		resizable: false,
+        		height: 500,
+        		width: 700,
+        		show: { effect: 'drop', direction: "up" },
+        		modal: true,
+        		draggable: true,
+        		open: function (event, ui) {
+        			$(this).load(url);
+
+        		},
+        		buttons: {
+        			"Close": function () {
+        				$(this).dialog("close");
+
+        			}
+        		},
+        		close: function (event, ui) {
+        			$(this).dialog('close');
+        		}
+        	});
+
+        	$("#dialog-confirm").dialog('open');
+        	return false;
+        });
+
+        $("#btncancel").live("click", function (e) {
+        	$("#dialog-confirm").dialog('close');
+
+        });
+
+        //alert message implementation
+        $("#formAlert").hide();
+        $('form[name="register"]').on("submit", function (e) {
+            var unit_code = $(this).find('input[name="unit_code"]');
+            var unit_name = $(this).find('input[name="unit_name"]');
+
+            if ($.trim(unit_name.val()) === "" || $.trim(unit_code.val()) === "") {
+                e.preventDefault();
+                $("#formAlert").slideDown(400);
+            }
+        });
+
+        $(".alert").find(".close").on("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $(this).closest(".alert").slideUp(400);
+        });
+
+    });
+</script>
+ <div class="ml-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="tab-nav ">
+                            <li ><a  href="@Url.Action("Index", "MasterList")" class="c-white">Items<span class="badge badge-info">@ViewBag.count</span></a></li>
+                            <li class="active"><a  href="@Url.Action("Index", "Unit")" class="c-white">Units<span class="badge badge-info">@ViewBag.unit</span></a></li>
+                            <li ><a  href="@Url.Action("viewCategory", "MasterList")" class="c-white">Categories<span class="badge badge-info">@ViewBag.category</span></a></li>
+                            <li ><a  href="@Url.Action("Index", "Supplier")" class="c-white">Suppliers<span class="badge badge-info">@ViewBag.supplier</span></a></li>
+                        </ul>  
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <ul class="ml-nav-right list-inline">
+                            <li class="ml-nav-search"><div class="fg-line">
+                                    @using (Html.BeginForm("Index", "Unit",FormMethod.Get))
+                                    {
+                                        @Html.TextBox("search", ViewBag.CurrentFilter as string, new { @class = "form-control"})
+                                        <p style="display:none"><input type="submit"/></p>
+                                        
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <ul class="ml-nav-right list-inline">
+                            <li>
+                                <a href="@Url.Action("Index", "Unit", new { sortOrder = ViewBag.SortName, currentFilter=ViewBag.CurrentFilter})"><img src="/Images/img/ksis-icons/sort-icon.png" width="20"></a>
+                            </li>
+                            <li><a  data-toggle="modal" data-target="#myModal" href="#"><img src="/Images/img/ksis-icons/add-item-icon.png" width="23"></a></li>
+                        </ul>
+                    </div>
+                    <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Add New Product</h4>
+                              </div>
+                              <div class="modal-body">
+                                    @using (Html.BeginForm("Create", "Unit", FormMethod.Get, new { @name = "register" }))
+                                    {
+                                        @Html.ValidationSummary(true)
+                                            <div id="formAlert" class="alert alert-danger">  
+                                                <a class="close">×</a>  
+                                                <strong>Warning!</strong> Make sure all fields are filled and try again.
+                                            </div>
+                                            <table>
+                                                <tr>
+                                                    <th>
+                                                        Unit Code
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="unit_code" name="unit_code" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        unit_name
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="unit_name" name="unit_name" >
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        <button type="submit" class="btn btn-primary" id="addbtn">Add</button>
+                                    }
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+                    
+         <section id="content">
+                <div id="ml-section" class="container">
+                    <div class="hs-content">
+                        <div class="hs-item hs-item-head">
+                            <div class="row ">
+                                <div class="col-xs-10 ">
+                                        <div class="row ">
+                                            <div class="col-xs-3 hs-item-name ss-item-head">
+                                                Unit Name
+                                            </div>
+                                            <div class="col-xs-3 hs-item-date ss-item-head">
+                                               Unit Code
+                                            </div>
+                                            <div class="col-xs-2 hs-item-staff  ss-item-head">
+                                               Created By
+                                            </div>
+                                            <div class="col-xs-2 hs-item-date ss-item-head">
+                                               Date Created
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                             <div class="hs-item">
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <a   href="#ml-item-view" data-toggle="modal"  >
+                                            <div class="row">
+                                                <div class="col-xs-3 hs-item-name">
+                                                    @if (item.active_flag == true) 
+                                                    { 
+                                                        <i class="md md-check text-success"></i>
+                                                    }else{
+                                                        <i class="md md-clear text-danger"></i>
+                                                    }&emsp;@Html.DisplayFor(modelItem => item.unit_name) <small>@Html.DisplayFor(modelItem => item.unit_id)</small>
+                                                </div>
+                                                <div class="col-xs-3 hs-item-info">
+                                                    <strong>@Html.DisplayFor(modelItem => item.unit_code)</strong>
+                                                </div>
+                                                <div class="col-xs-2  ml-sn hs-item-info">
+                                                    @Html.DisplayFor(modelItem => item.created_by) 
+                                                </div>
+                                                <div class="col-xs-2  hs-item-info">
+                                                    @String.Format("{0:d}", item.created_date)
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-2 hs-item-actions">
+                                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                        @Ajax.ActionLink(" E ", "Edit", new { id = item.unit_id },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "Get",
+                                        }, new { @class = "editModal" })</button>
+                                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                        @Ajax.ActionLink(" X ", "Delete", new { id = item.unit_id },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "Get",
+                                        }, new { @class = "deleteModal" })</button>
+
+                                        @*<button  type="button" class="waves-circle ss-delete-btn btn-sm btn waves-effect"><i class="md md-clear"></i></button>*@
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <ul class="fw-footer pagination">
+                             @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                         </ul>
+                    </div>
+                </div>
+
+            </section>
+<div id="dialog-confirm" style="display: none"></div>
+<div id="dialog-edit" style="display: none"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

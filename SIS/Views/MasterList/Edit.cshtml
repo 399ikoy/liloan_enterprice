@@ -1,0 +1,147 @@
+﻿@model SIS.Models.Product_Info
+
+@{
+    ViewBag.Title = "Edit";
+}
+<meta charset="utf-8">
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product_Info</legend>
+        @Html.HiddenFor(model => model.product_info_id)
+        @Html.HiddenFor(model => model.created_by)
+        @Html.HiddenFor(model => model.created_date)
+        @Html.HiddenFor(model => model.updated_by)
+        @Html.HiddenFor(model => model.updated_date)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_info_id)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.product_info_id)
+            @Html.ValidationMessageFor(model => model.product_info_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_desc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.product_desc)
+            @Html.ValidationMessageFor(model => model.product_desc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.category_id, "Category")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("category_id")
+            @Html.ValidationMessageFor(model => model.category_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.sub_category_id, "Sub_Category")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("sub_category_id")
+            @Html.ValidationMessageFor(model => model.sub_category_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_orig_price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.product_orig_price)
+            @Html.ValidationMessageFor(model => model.product_orig_price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_sold_price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.product_sold_price)
+            @Html.ValidationMessageFor(model => model.product_sold_price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.unit_id)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("unit_id")
+            @Html.ValidationMessageFor(model => model.unit_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_code)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.product_code)
+            @Html.ValidationMessageFor(model => model.product_code)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_qty)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.product_qty)
+            @Html.ValidationMessageFor(model => model.product_qty)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_cut_off)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.product_cut_off)
+            @Html.ValidationMessageFor(model => model.product_cut_off)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_remarks)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.product_remarks)
+            @Html.ValidationMessageFor(model => model.product_remarks)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.supplier_info_id, "Supplier_Info")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("supplier_info_id")
+            @Html.ValidationMessageFor(model => model.supplier_info_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.created_by)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Staff_Info.staff_fname)
+            @Html.DisplayFor(model => model.Staff_Info.staff_lname)
+            @Html.ValidationMessageFor(model => model.created_by)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.created_date)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.created_date)
+            @Html.ValidationMessageFor(model => model.created_date)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.active_flag)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.active_flag)
+            @Html.ValidationMessageFor(model => model.active_flag)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+

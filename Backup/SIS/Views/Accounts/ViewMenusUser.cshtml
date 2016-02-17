@@ -1,0 +1,22 @@
+﻿@model IEnumerable<SIS.Models.System_Menu_Roles>
+
+@{
+    ViewBag.Title = "Add Account";
+}
+
+<table>
+    <tr>
+        <td>Menus</td>
+    </tr>
+    @foreach (var item in Model) 
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem=>item.System_Menus.sm_description)</td>
+        </tr>
+    }
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,64 @@
+﻿@model SIS.Models.Product_Sales
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Product_Sales</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_sales_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_sales_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product_Info.product_desc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product_Info.product_desc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.quantity_sold)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.quantity_sold)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Receipt.customer_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Receipt.customer_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.assisted_by)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.assisted_by)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.assisted_date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.assisted_date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.active_flag)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.active_flag)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

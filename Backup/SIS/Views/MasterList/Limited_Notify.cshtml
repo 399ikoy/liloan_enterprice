@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SIS.Models.Product_Info>
+ <li class="dropdown hidden-xs">
+    <a data-toggle="dropdown" class="tm-notification" href=""><i class="tmn-counts">@Model.Count()</i></a>
+    <div class="dropdown-menu dropdown-menu-lg pull-right">
+        <div class="listview" id="nav-todo">
+            <div class="lv-header">
+                LIMITED STOCKS
+                <ul class="actions">
+                    <li class="dropdown">
+                        <a href="" data-clear="notification">
+                            <i class="md md-done-all"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="lv-body c-overflow">
+                @foreach(var item in Model){
+                    <a class="lv-item" href="@Url.Action("out_of_stocks", "Purchase")">
+                        <div class="media">
+                            <div class="pull-left">
+                                <img class="lv-img-sm" src="/Images/img/profile-pics/1.jpg" alt="">
+                            </div>
+                            <div class="media-body">
+                                <div class="lv-title">@Html.DisplayFor(modelItem => item.product_desc) <small>@Html.DisplayFor(modelItem => item.product_code)</small></div>
+                                <small class="lv-small"><span class="c-red">@Html.DisplayFor(modelItem => item.product_qty)</span> @Html.DisplayFor(modelItem => item.Unit.unit_name) left</small>
+                            </div>
+                        </div>
+                    </a>
+                }
+            <a class="lv-footer" href="@Url.Action("out_of_stocks", "Purchase")">View all</a>
+        </div>
+                    
+    </div>
+</li>

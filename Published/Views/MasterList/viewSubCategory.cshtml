@@ -1,0 +1,17 @@
+﻿@model IEnumerable<SIS.Models.Sub_Category>
+
+@{
+    ViewBag.Title = "viewCategory";
+}
+
+<table>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sub_category_name)
+        </td>
+    </tr>
+}
+
+</table>

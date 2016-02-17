@@ -1,0 +1,31 @@
+﻿@model SIS.Models.Account_Info
+@{
+    ViewBag.Title = "Add Menu";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("AddMenuUser", "Accounts", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.Hidden("account_info_id", Model.account_info_id)
+    
+
+
+        <div class="editor-label">
+            User
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("system_menus_id")
+        </div>
+
+        
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

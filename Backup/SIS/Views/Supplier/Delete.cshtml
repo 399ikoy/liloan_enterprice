@@ -1,0 +1,68 @@
+﻿@model SIS.Models.Supplier_Info
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Supplier_Info</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.supplier_info_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.supplier_info_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.supplier_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.supplier_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.supplier_contact_info)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.supplier_contact_info)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.supplier_contact_person)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.supplier_contact_person)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.supplier_address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.supplier_address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.company_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.company_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.active_flag)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.active_flag)
+    </div>
+</fieldset>
+@using (Html.BeginForm("DeleteInfo", "Supplier", FormMethod.Get)) {
+    <p>
+        @Html.Hidden("id", Model.supplier_info_id)
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

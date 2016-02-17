@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SIS.Models.Product_Purchase>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.product_purchase_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Info.product_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.purchase_qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.purchase_new_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active_flag)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.product_purchase_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Info.product_desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.purchase_qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.purchase_new_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_by)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.active_flag)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

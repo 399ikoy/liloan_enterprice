@@ -1,0 +1,71 @@
+﻿@model SIS.Models.Account_Info
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kriskatkai Sales and Inventory System Login</title>
+            
+        <!-- CSS -->
+        <link href="~/Content/css/app.min.1.css" rel="stylesheet" />
+        <link href="~/Content/css/app.min.2.css" rel="stylesheet" />
+        <link href="~/Content/css/custom.css" rel="stylesheet" />
+        <link href="~/Content/css/material-design-iconic-font.min.css" rel="stylesheet" />
+        <link href="~/Content/css/animate.min.css" rel="stylesheet" />
+    </head>
+    
+    <body class="login-content">
+        <!-- Login -->
+        <div class="lc-block toggled" id="l-login">
+            <div class="ksis-logo ">
+                <img src="/Images/img/ksis.png" width="60">
+                <div class="text-primary p-t-10">
+                    KRISKATKAI ENTERPRISE
+                </div>
+                <div class="text-primary ">
+                   SALES AND INVENTORY SYSTEM
+                </div>
+            </div>
+            @using (Html.BeginForm("LoginUser", "Accounts", FormMethod.Post))
+            {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-face-unlock"></i></span>
+                <div class="fg-line">
+                    @Html.TextBoxFor(m => m.username, new { @class = "form-control",@placeholder="Username"})
+                    @Html.ValidationMessageFor(m => m.username)
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-vpn-key"></i></span>
+                <div class="fg-line">
+                    @Html.PasswordFor(m => m.password, new { @class = "form-control",@placeholder="Password"})
+                    @Html.ValidationMessageFor(m => m.password)
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <i class="input-helper"></i>
+                    Keep me signed in
+                </label>
+            </div>
+            <div class="m-t-25 ">
+                <button type="submit" class="btn btn-login btn-primary"><i class="md md-arrow-forward"></i></button>
+            </div>
+            }
+        </div>
+        
+        <!-- Javascript Libraries -->
+            <script src="~/Scripts/js/waves.min.js"></script>
+            <script src="~/Scripts/jquery.min.js"></script>
+            <script src="~/Scripts/bootstrap/bootstrap.js"></script>
+            <script src="~/Scripts/js/functions.js"></script>
+        
+    </body>
+</html>

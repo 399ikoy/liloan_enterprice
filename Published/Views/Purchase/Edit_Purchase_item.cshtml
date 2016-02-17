@@ -1,0 +1,47 @@
+﻿@model SIS.Models.Product_Purchase
+
+@{
+    ViewBag.Title = "Edit";
+}
+<meta charset="utf-8">
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Modify_Purchase_Item","Purchase",FormMethod.Get)) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model=>model.product_purchase_id)
+    @Html.HiddenFor(model=>model.product_info_id)
+    @Html.HiddenFor(model=>model.purchase_new_price)
+    @Html.HiddenFor(model=>model.active_flag)
+    @Html.HiddenFor(model=>model.pt_id)
+    
+    <fieldset>
+        <legend>Product_Info</legend>
+        <div class="editor-label">
+            @Html.Label("Product Info")
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.product_info_id) - 
+            @Html.DisplayFor(model => model.Product_Info.product_desc)
+            @Html.DisplayFor(model => model.Product_Info.product_code)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Purchase_qty")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.purchase_qty)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

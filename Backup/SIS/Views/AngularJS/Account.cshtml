@@ -1,0 +1,17 @@
+﻿@{
+Response.AppendHeader("Access-Control-Allow-Origin", "*");
+Response.AppendHeader("Content-type", "application/json");
+var db = Database.Open("sis_db");
+var query = db.Query("SELECT username, password, user_type FROM Account_Info");
+var outp = "";
+var c = chr(34);
+}
+@foreach(var row in query)
+{
+if outp <> "" then outp = outp + ","
+outp = outp + "{" + c + "Name"    + c + ":" + c + @row.username + c + ","
+outp = outp +       c + "City"    + c + ":" + c + @row.password        + c + ","
+outp = outp +       c + "Country" + c + ":" + c + @row.user_type     + c + "}"
+}
+outp ="{" + c + "records" + c + ":[" + outp + "]}"
+@outp

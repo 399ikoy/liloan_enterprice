@@ -1,0 +1,328 @@
+﻿@model List<SIS.Models.Purchase_Transactions_vw>
+
+@{
+    ViewBag.Title = "Order Items";
+}
+<meta charset="utf-8">
+<link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //auto-complete implementation
+        $("#product").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Purchase/Item_Added",
+                    type: "GET",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.complete_info, value: item.product_info_id };
+                        }))
+                    }
+                })
+            },
+            select: function (event, ui) {
+                event.preventDefault();
+                $("#product").val(ui.item.label);
+                $("#product_info_id").val(ui.item.value);
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+        //editing the details of per order items
+        $(".editModal").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-edit").dialog({
+                title: 'Edit Master List Information',
+                autoOpen: false,
+                resizable: false,
+                height: 500,
+                width: 700,
+                show: { effect: 'drop', direction: "up" },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) {
+                    $(this).load(url);
+
+                },
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).dialog('close');
+                }
+
+            });
+
+            $("#dialog-edit").dialog('open');
+            return false;
+        });
+
+        $(".deleteModal").live("click", function (e) {
+        	var url = $(this).attr('href');
+        	$("#dialog-confirm").dialog({
+        		title: 'Are you sure you want to delete?',
+
+        		autoOpen: false,
+        		resizable: false,
+        		height: 500,
+        		width: 700,
+        		show: { effect: 'drop', direction: "up" },
+        		modal: true,
+        		draggable: true,
+        		open: function (event, ui) {
+        			$(this).load(url);
+
+        		},
+        		buttons: {
+        			"Close": function () {
+        				$(this).dialog("close");
+
+        			}
+        		},
+        		close: function (event, ui) {
+        			$(this).dialog('close');
+        		}
+        	});
+
+        	$("#dialog-confirm").dialog('open');
+        	return false;
+        });
+
+        $("#btncancel").live("click", function (e) {
+        	$("#dialog-confirm").dialog('close');
+
+        });
+
+        //alert message implementation
+        $("#formAlert").hide();
+        $('form[name="register"]').on("submit", function (e) {
+            var product_info_id = $(this).find('input[name="product_info_id"]');
+            var product = $(this).find('input[name="product"]');
+            var purchase_qty = $(this).find('input[name="purchase_qty"]');
+
+            if ($.trim(product_info_id.val()) === "" || $.trim(product.val()) === "" || $.trim(purchase_qty.val()) === "") {
+                e.preventDefault();
+                $("#formAlert").slideDown(400);
+            }
+        });
+
+        $(".alert").find(".close").on("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $(this).closest(".alert").slideUp(400);
+        });
+
+    });
+</script>
+
+<div class="sub-nav-ver2-holder">
+    <div class="container">                
+        <div class="row">
+            <div class="col-md-6">
+                <div class="sub-nav-ver2">
+                    <a href="@Url.Action("Ordered_Lists","Purchase")"><span class="ksis-arl-icon"></span></a> @ViewBag.purchase_name
+                </div>
+
+            </div>
+                    
+        </div>
+    </div>
+    <!-- Modal Default --> 
+    <div class="modal fade" id="order-add-item" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Item</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        @using (Html.BeginForm("AddNewItem", "Purchase", FormMethod.Get, new { @name = "register" }))
+                        {
+                            <span>Item</span>
+                            <input type="text" name="product" id="product" style="width:300px;"><br/>
+                                    
+                            <input type="hidden" name="product_info_id" id="product_info_id" />
+                            <span>Quantity</span>
+                            <input type="text" name="purchase_qty"/><br/>
+                            <input type="submit" value="Add" class="btn btn-warning">
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sub-menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="details"><i> Ordered last @String.Format("{0:d}", ViewBag.purchase_date) by <a href="">@ViewBag.order_by</a></i></div>
+            </div>
+            <div class="col-md-5 text-right">
+                <div class="sub-menu-total sub-menu-info"><strong>Total :</strong> ₱ @ViewBag.total</div>
+            </div>
+           @* <div class="col-md-1 text-right ">
+                <div class="sub-menu-info">
+                    <button type="button" class="text-success waves-circle ss-check-btn btn-sm btn waves-effect waves-effect"><i class="md md-check"></i></button> 
+                    <button type="button" class="text-danger waves-circle ss-delete-btn btn-sm btn waves-effect waves-effect"><i class="md md-clear"></i></button> 
+                </div>
+            </div>*@
+        </div>
+    </div>
+</div>
+<section id="content">
+    <div class="container">
+        <div class="hs-content ">
+                <div class="hs-item hs-item-head">
+                    <div class="row ">
+                        <div class="col-xs-12 ">
+                                <div class="row ">
+                                    <div class="col-xs-4 hs-item-name ss-item-head">
+                                        Items
+                                    </div>
+                                    <div class="col-xs-2 hs-item-date ss-item-head text-center">
+                                        Unit Price
+                                    </div>
+                                    <div class="col-xs-4 hs-item-staff  ss-item-head text-center">
+                                        No of items Ordered
+                                    </div>
+                                        <div class="col-xs-2 hs-item-date ss-item-head ">
+                                        Subtotal
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            @if (ViewBag.status == "Ordered")
+            {
+                using (Html.BeginForm("Delivery", "Purchase", FormMethod.Post))
+                {
+
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                         @Html.Hidden("pt_id", Model[i].pt_id)
+                         @Html.HiddenFor(model => model[i].product_info_id)
+                         @Html.HiddenFor(model => model[i].product_purchase_id)
+                         @Html.HiddenFor(model => model[i].active_flag)
+                         @Html.HiddenFor(model => model[i].pt_id)
+                        <div class="hs-item">
+                            <div class="row ">
+                                <div class="col-xs-12 ">
+                                    <div class="col-xs-4 hs-item-name">
+                                        @Html.CheckBoxFor(model => model[i].active_flag.Value, new { @class = "is_selected", @id = Model[i].product_purchase_id })
+                                        @Html.DisplayFor(model => model[i].sub_category_name) 
+                                        @Html.DisplayFor(model => model[i].product_desc)<small>@Html.DisplayFor(model => model[i].product_code)</small>
+                                    </div>
+                                    <div class="col-xs-2 hs-item-date text-center">
+                                        <span class="text-green">₱ @Html.EditorFor(model => model[i].purchase_new_price)</span>
+                                    </div>
+                                    <div class="col-xs-4 hs-item-date text-center">
+                                        @Html.EditorFor(model => model[i].purchase_qty)
+                                    </div>
+                                    <div class="col-xs-2 hs-item-date ">
+                                        <span class="text-primary">₱ 
+                                            @{
+                        var sub_total = Model[i].purchase_qty * Model[i].purchase_new_price;
+                                            }
+                                            @sub_total
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    }
+                         <input type="submit" value="Delivered" class="ksis-arr-icon"/>
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="hs-item">
+                        <div class="row ">
+                            <div class="col-xs-12 ">
+                                <div class="col-xs-4 hs-item-name">
+                                    @Html.DisplayFor(model => model[i].sub_category_name) 
+                                    @Html.DisplayFor(model => model[i].product_desc)<small>@Html.DisplayFor(model => model[i].product_code)</small>
+                                </div>
+                                <div class="col-xs-2 hs-item-date text-center">
+                                    <span class="text-green">₱ @Html.DisplayFor(model => model[i].purchase_new_price)</span>
+                                </div>
+                                <div class="col-xs-4 hs-item-date text-center">
+                                    @Html.DisplayFor(model => model[i].purchase_qty)
+                                </div>
+                                <div class="col-xs-2 hs-item-date ">
+                                    <span class="text-primary">₱ 
+                                        @{
+                                            var sub_total = Model[i].purchase_qty * Model[i].purchase_new_price;
+                                        }
+                                        @sub_total
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="modal-order" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog ml-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="ml-modal-item-small">Purchase Order</span>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Purchase_Transactions", "Purchase", FormMethod.Get, new { @name = "register1" }))
+                {
+                <div class="form-group m-b-15">
+                    <div class="fg-line">
+                        <small class="ml-modal-item-small">Order Name</small> 
+                        <input type="text" class="form-control input-sm" placeholder="Input" name="purchase_name"/>
+                    </div>
+                </div>
+                <div class="form-group m-b-15">
+                        <div class="input-group form-group">
+                            <span class="input-group-addon"><i class="md md-event"></i></span>
+                                <div class="dtp-container dropdown fg-line">
+                                <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here..." name="expected_date" id="expected_date">
+                            </div>
+                        </div>
+                </div>
+                <div class="form-group m-b-15">
+                    <div class="fg-line">
+                        <small class="ml-modal-item-small">Supplier</small> 
+                    </div>
+                </div>
+                    <input type="submit" value="SAVE"/>
+                }
+            </div>
+            <div class="modal-footer ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-link " data-dismiss="modal">Continue</button>
+                        <button type="button" class="btn btn-link " data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm" style="display: none"></div>
+<div id="dialog-edit" style="display: none"></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

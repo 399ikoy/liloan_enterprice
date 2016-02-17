@@ -1,0 +1,77 @@
+﻿@model SIS.Models.Expens
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Expens</legend>
+        @Html.HiddenFor(model => model.expenses_id)
+        @Html.HiddenFor(model => model.created_by)
+        @Html.HiddenFor(model => model.created_date)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.expenses_type)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.expenses_type)
+            @Html.ValidationMessageFor(model => model.expenses_type)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.transaction_date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.transaction_date)
+            @Html.ValidationMessageFor(model => model.transaction_date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.expenses_amount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.expenses_amount)
+            @Html.ValidationMessageFor(model => model.expenses_amount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.remarks)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.remarks)
+            @Html.ValidationMessageFor(model => model.remarks)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.active_flag)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.active_flag)
+            @Html.ValidationMessageFor(model => model.active_flag)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.staff_id, "Staff_Info")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("staff_id", String.Empty)
+            @Html.ValidationMessageFor(model => model.staff_id)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

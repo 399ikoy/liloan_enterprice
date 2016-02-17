@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SIS.Models.System_Menu_Roles>
+<aside id="sidebar">
+<div class="sidebar-inner c-overflow">
+  
+    <ul class="main-menu">
+        
+        @{
+            if(Model != null){
+                var class_data="";
+                foreach (var item in Model) {
+                    if (item.System_Menus.sm_description == "Dashboard") 
+                    {
+                        class_data = "md md-home";
+                    }
+                    else if (item.System_Menus.sm_description == "Sale Transactions")
+                    {
+                        class_data = "md md-attach-money";
+                    }
+                    else if (item.System_Menus.sm_description == "Delivery")
+                    {
+                        class_data = "md md-place";
+                    }
+                    else if (item.System_Menus.sm_description == "Master List")
+                    {
+                        class_data = "md md-view-list";
+                    }
+                    else if (item.System_Menus.sm_description == "Purchase")
+                    {
+                        class_data = "md md-shopping-basket";
+                    }
+                    else if (item.System_Menus.sm_description == "Reports")
+                    {
+                        class_data = "md md-equalizer";
+                    }
+                    else if (item.System_Menus.sm_description == "Expenses")
+                    {
+                        class_data = "md md-equalizer";
+                    }
+                  <li class="active"><a href="@Url.Action(item.System_Menus.sm_action_name,item.System_Menus.sm_controller)">&nbsp;&nbsp;&nbsp;<i class="@class_data"></i>&nbsp;&nbsp;&nbsp;@item.System_Menus.sm_description</a></li>
+                }
+          }
+       }
+    </ul>
+</div>
+</aside>
+
+
+        @*<li class="active"><a href="@Url.Action("Index", "Home")"><i class="md md-home"></i> Dashboard</a></li>
+        <li ><a href="@Url.Action("Index", "Sales")"><i class="md md-attach-money"></i>Sale Transactions</a></li>
+        <li ><a href="delivery.html"><i class="md md-place"></i>Delivery</a></li>
+        <li ><a href="@Url.Action("Index", "MasterList")"><i class="md md-view-list"></i>Master List</a></li>
+        <li ><a href="@Url.Action("Ordered_Lists", "Purchase")"><i class="md md-shopping-basket"></i> Orders</a></li>
+        <li ><a href="@Url.Action("Reports", "Purchase")"><i class="md md-equalizer"></i> Reports</a></li>
+        <li ><a href="@Url.Action("Index", "Expenses")"><i class="md md-equalizer"></i> Expenses</a></li>*@

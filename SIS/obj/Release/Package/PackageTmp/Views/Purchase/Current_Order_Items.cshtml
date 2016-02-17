@@ -1,0 +1,298 @@
+﻿@model IEnumerable<SIS.Models.Current_Order_Items>
+
+@{
+    ViewBag.Title = "Order Items";
+}
+<meta charset="utf-8">
+<link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+<link href="~/Content/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/js/moment.min.js"></script>
+<script src="~/Scripts/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+<script src="~/Scripts/js/fullcalendar.min.js"></script>
+<script src="~/Scripts/js/functions.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //auto-complete implementation
+        $("#product").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Purchase/Item_Added",
+                    type: "GET",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.complete_info, value: item.product_info_id };
+                        }))
+                    }
+                })
+            },
+            select: function (event, ui) {
+                event.preventDefault();
+                $("#product").val(ui.item.label);
+                $("#product_info_id").val(ui.item.value);
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+        //editing the details of per order items
+        $(".editModal").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-edit").dialog({
+                title: 'Edit Master List Information',
+                autoOpen: false,
+                resizable: false,
+                height: 500,
+                width: 700,
+                show: { effect: 'drop', direction: "up" },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) {
+                    $(this).load(url);
+
+                },
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).dialog('close');
+                }
+
+            });
+
+            $("#dialog-edit").dialog('open');
+            return false;
+        });
+
+        $(".deleteModal").live("click", function (e) {
+        	var url = $(this).attr('href');
+        	$("#dialog-confirm").dialog({
+        		title: 'Are you sure you want to delete?',
+
+        		autoOpen: false,
+        		resizable: false,
+        		height: 500,
+        		width: 700,
+        		show: { effect: 'drop', direction: "up" },
+        		modal: true,
+        		draggable: true,
+        		open: function (event, ui) {
+        			$(this).load(url);
+
+        		},
+        		buttons: {
+        			"Close": function () {
+        				$(this).dialog("close");
+
+        			}
+        		},
+        		close: function (event, ui) {
+        			$(this).dialog('close');
+        		}
+        	});
+
+        	$("#dialog-confirm").dialog('open');
+        	return false;
+        });
+
+        $("#btncancel").live("click", function (e) {
+        	$("#dialog-confirm").dialog('close');
+
+        });
+
+        //alert message implementation
+        $("#formAlert").hide();
+        $('form[name="register"]').on("submit", function (e) {
+            var product_info_id = $(this).find('input[name="product_info_id"]');
+            var product = $(this).find('input[name="product"]');
+            var purchase_qty = $(this).find('input[name="purchase_qty"]');
+
+            if ($.trim(product_info_id.val()) === "" || $.trim(product.val()) === "" || $.trim(purchase_qty.val()) === "") {
+                e.preventDefault();
+                $("#formAlert").slideDown(400);
+            }
+        });
+
+        $(".alert").find(".close").on("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $(this).closest(".alert").slideUp(400);
+        });
+
+    });
+</script>
+
+<div class="sub-nav-ver2-holder">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="sub-nav-ver2">
+                    <a href="@Url.Action("out_of_stocks", "Purchase")"><span class="ksis-arl-icon"></span></a>Current Order Items
+                </div>
+            </div>
+            <div class="col-md-2 text-right pull-right">
+                <ul class="ml-nav-right list-inline">
+                    <li><a data-toggle="modal" href="#order-add-item"><img src="/Images/img/ksis-icons/add-item-icon.png" width="23"></a></li>
+                </ul>
+            </div>
+
+            <!-- Modal Line -->
+            <!-- Modal Default --> 
+            <div class="modal fade" id="order-add-item" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Item</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                @using (Html.BeginForm("AddNewItem", "Purchase", FormMethod.Get, new { @name = "register" }))
+                                    {
+                                    <span>Item</span>
+                                    <input type="text" name="product" id="product" style="width:300px;"><br/>
+                                    
+                                    <input type="hidden" name="product_info_id" id="product_info_id" />
+                                    <span>Quantity</span>
+                                    <input type="text" name="purchase_qty"/><br/>
+                                    <input type="submit" value="Add" class="btn btn-warning">
+                                    }
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="order-fixed-btn-holder container">
+    <a href="#modal-order" data-toggle="modal">
+        <div class="row text-center">
+                Order <span class="ksis-arr-icon"></span>
+        </div>
+    </a>
+</div>
+<section id="content">
+    <div class="container">
+        <div class="hs-content">
+            <div class="hs-item hs-item-head">
+                <div class="row ">
+                    <div class="col-xs-11 ">
+                            <div class="row ">
+                                <div class="col-xs-3 hs-item-name ss-item-head">
+                                    Decription
+                                </div>
+                                <div class="col-xs-3 hs-item-date ss-item-head text-center">
+                                    Orginal Price
+                                </div>
+                                <div class="col-xs-3 hs-item-staff  ss-item-head text-center">
+                                    Stocks Left
+                                </div>
+                                    <div class="col-xs-3 hs-item-date ss-item-head text-center">
+                                    Items to Order
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+            <div class="hs-item">
+                <div class="row ">
+                    <div class="col-xs-11 ">
+                        <div class="row ">
+                            <div class="col-xs-3 hs-item-name">
+                                @Html.DisplayFor(modelItem => item.product_desc)
+                                @Html.DisplayFor(modelItem => item.sub_category_name)
+                                @Html.DisplayFor(modelItem => item.category_name) 
+                                <small>@Html.DisplayFor(modelItem => item.product_code)</small>
+                            </div>
+                            <div class="col-xs-3 hs-item-date text-center">
+                                <span class="text-green">P @Html.DisplayFor(modelItem => item.product_orig_price)</span>
+                            </div>
+                            <div class="col-xs-3 hs-item-date text-center">
+                                <span class="text-danger">@Html.DisplayFor(modelItem => item.product_qty)</span>
+                            </div>
+                            <div class="col-xs-3 hs-item-date text-center">
+                                <span class="text-danger">@Html.DisplayFor(modelItem => item.purchase_qty)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 hs-item-actions">
+                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                            @Ajax.ActionLink("Edit", "Edit_Purchase_item", new { id = item.product_purchase_id },
+                            new AjaxOptions
+                            {
+                                HttpMethod = "Get",
+                            }, new { @class = "editModal" })
+                        </button>
+                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                            @Ajax.ActionLink("Delete", "Delete_Purchase_Item", new { id = item.product_purchase_id },
+                            new AjaxOptions
+                            {
+                                HttpMethod = "Get",
+                            }, new { @class = "deleteModal" })
+                        </button>
+                    </div>
+                </div>
+            </div> 
+            }
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="modal-order" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog ml-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="ml-modal-item-small">Purchase Order</span>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Purchase_Transactions", "Purchase", FormMethod.Get, new { @name="register1"})){
+                <div class="form-group m-b-15">
+                    <div class="fg-line">
+                        <small class="ml-modal-item-small">Order Name</small> 
+                        <input type="text" class="form-control input-sm" placeholder="Input" name="purchase_name"/>
+                    </div>
+                </div>
+                <div class="form-group m-b-15">
+                        <div class="input-group form-group">
+                            <span class="input-group-addon"><i class="md md-event"></i></span>
+                                <div class="dtp-container dropdown fg-line">
+                                <input type='text' class="date-picker form-control" data-toggle="dropdown" placeholder="Click here..." name="expected_date" id="expected_date">
+                            </div>
+                        </div>
+                </div>
+                <div class="form-group m-b-15">
+                    <div class="fg-line">
+                        <small class="ml-modal-item-small">Supplier</small> 
+                        @Html.DropDownList("supplier_id")
+                    </div>
+                </div>
+                    <input type="submit" value="SAVE"/>
+                }
+            </div>
+            <div class="modal-footer ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-link " data-dismiss="modal">Continue</button>
+                        <button type="button" class="btn btn-link " data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm" style="display: none"></div>
+<div id="dialog-edit" style="display: none"></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

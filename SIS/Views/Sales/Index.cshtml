@@ -1,0 +1,286 @@
+﻿@model IEnumerable<SIS.Models.Product_Sales>
+
+<script src="~/Scripts/angular/angular.min.js"></script>
+<script src="~/Scripts/angular/index.js"></script>
+
+<section id="sale-section" ng-app="SimpleApp" ng-controller="simpleController">
+    <div class="col-md-4 ss-holder ss-lp">
+        <div class="ss-lp-header">
+            <a href="#"><span class="ksis-arl-icon"></span></a> #11001124
+        </div>
+        <div class="form-group ss-barcode-box">
+            <select class="selectpicker input-lg" data-live-search="true" ng-model="selectedItem">
+                
+            </select>
+            <br><br>
+            <button class="btn btn-primary waves-effect" style="float:right;" ng-click='add({
+                        "name" : "e",
+                                "price" : 1
+                })'>
+                Add to Order list
+            </button> <br>
+        </div>
+        
+        <div class="ss-lp-content">
+            <table class="table">
+                <tr>
+                    <td>
+                        <div class="p-t-10 ss-lp-quantity">Barcode</div>
+                    </td>
+                    <td class=" ss-lp-td ss-lp-quantity">
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-md " placeholder="Input value" ng-change="barcodeData({{code}})" ng-model="code">   
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+                <div class="m-t-30 text-right">
+
+
+                </div>
+
+            @*<table id='example-table' border="1">
+                    @foreach (var item in ViewBag.prod)
+                    {
+                        <tr>
+                            <td>@item.product_desc</td>
+                            <td>@item.product_sold_price</td>
+                            <td>@item.product_code</td>
+                            <td><button class="btn btn-primary waves-effect" ng-click='add({
+                                "name" : "@item.product_desc" ,
+                                "price" : @item.product_sold_price
+                             })'>Add to Order list</button></td>
+                        </tr>
+                    }
+                </table>*@
+        </div>
+    </div>
+    </div>
+
+    <div id="ss-right-panel" class="col-md-8 ss-holder">
+        <div class="ss-rp-header">
+            <div class="row">
+                <div class="col-xs-6">
+                    <span class="ss-bag text-center">4</span>
+                    <span class="c-white">Current Bag</span>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <span class="ss-date">Sep 01, 2015</span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="ss-rp-content">
+            <div class="hs-content">
+                <div class="hs-item hs-item-head">
+                    <div class="row ">
+                        <div class="col-xs-11 ">
+                            <div class="row ">
+                                <div class="col-xs-4 hs-item-name ss-item-head">
+                                    Decription
+                                </div>
+                                <div class="col-xs-3 hs-item-date ss-item-head">
+                                    Unit Price
+                                </div>
+                                <div class="col-xs-3 hs-item-staff  ss-item-head">
+                                    Quantity
+                                </div>
+                                <div class="col-xs-2 hs-item-date ss-item-head">
+                                    Total
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hs-item" ng-repeat="entry in collection track by $index">
+                    <div class="row">
+                        <div class="col-xs-11 ">
+                            <a>
+                                <div class="row">
+                                    <div class="col-xs-4 hs-item-name">
+                                        {{entry.name}}
+                                    </div>
+                                    <div class="col-xs-3 hs-item-date">
+                                        P <span> {{entry.price}} </span>
+                                    </div>
+                                    <div class='col-xs-3 ss-quantity'>
+                                        <div class="fg-line">
+                                            <input type="number" min="0" class="form-control" placeholder="Quantity" ng-model="entry.quantity" ng-init="entry.quantity = 1" onchange="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2 hs-item-date">
+                                        <span class="text-green">P <span> {{(entry.price*entry.quantity) | setDecimal:2}} </span> </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xs-1 hs-item-actions" ng-init="index(entry.price*quantity)">
+                            <button type="button" class="waves-circle ss-delete-btn btn-sm btn"><a ng-click="remove(collection, $index)"><i class="md md-clear"></i></a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-4 ss-holder-btm">
+        <table class="table">
+            <tr class="tr-subtotal">
+                <td>
+                    Subtotal
+                </td>
+                <td>
+                    <span class="text-green">P {{ getTotal() | setDecimal:2}} </span>
+                </td>
+            </tr>
+            <tr class="tr-discount">
+                <td>Discount</td>
+                <td class="ss-quantity">
+                    <div class="fg-line">
+                        <input type="number" min="0" max="{{ getTotal() }}" class="form-control" ng-model="entry.discount" ng-init="entry.discount = 0" placeholder="discount">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-8 ss-holder-btm">
+        <table class="table">
+            <tr>
+                <td>
+                    <div class="td-total-box">
+                        Total
+                        <span class="td-total pull-right">P {{ (getTotal() - entry.discount) | setDecimal:2}} </span>
+                    </div>
+                </td>
+                <td class="td-proceed-btn">
+                    <button data-toggle="modal" href="components.html#modalDefault" class="btn btn-primary  btn-icon waves-effect waves-circle waves-float"><i class="md md-arrow-forward"></i></button>
+                </td>
+                <div class="modal fade" id="modalDefault" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        @using (Html.BeginForm())
+                        {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="">
+                                    <!-- Tabs -->
+                                    <div>
+                                        <div class="card-body">
+                                            <ul class="tab-nav tn-justified tn-icon" role="tablist">
+                                                <li role="presentation" class="active">
+                                                    <a class="col-sx-6" href="widgets.html#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">
+                                                        Pickup
+                                                    </a>
+                                                </li>
+                                                <li role="presentation">
+                                                    <a class="col-xs-6" href="widgets.html#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab">
+                                                        Deivery
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content p-30">
+
+                                                <div role="tabpanel" class="tab-pane animated fadeIn in active" id="tab-1">
+                                                    <div>
+                                                        @Html.DropDownList("paymentType")
+                                                    </div>
+                                                    <div class="p-10"></div>
+                                                    <div class="form-group ">
+                                                        <label class="fg-label">Name</label>
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control" name="customer_name">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group fg-float">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                        <label class="fg-label">Amount</label>
+                                                    </div>
+                                                    <div class="p-10">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                                TOTAL
+                                                            </div>
+                                                            <div class="col-xs-9">
+                                                                P {{ (getTotal() - entry.discount) | setDecimal:2}}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div role="tabpanel" class="tab-pane animated fadeIn" id="tab-2">
+                                                    <div class="form-group fg-float">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                        <label class="fg-label">Name</label>
+                                                    </div>
+                                                    <div class="form-group fg-float">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                        <label class="fg-label">Contact Number</label>
+                                                    </div>
+                                                    <div class="form-group fg-float">
+                                                        <div class="fg-line">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                        <label class="fg-label">Address</label>
+                                                    </div>
+                                                    <div>
+                                                        <select class="selectpicker" title="New Route">
+                                                            <option>Liloan</option>
+                                                            <option>Compostila</option>
+                                                            <option>Danao</option>
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <select class="selectpicker" title="Type">
+                                                            <option>Cash</option>
+                                                            <option>Credit</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="p-10"></div>
+                                                    <div class="form-group fg-float">
+                                                        <div class="fg-line">
+                                                            <input type="email" class="form-control">
+                                                        </div>
+                                                        <label class="fg-label">Amount</label>
+                                                    </div>
+                                                    <div class="p-10">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                                TOTAL
+                                                            </div>
+                                                            <div class="col-xs-9">
+                                                                P {{ (getTotal() - entry.discount) | setDecimal:2}}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-link waves-effect" value="OK">
+                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+            </tr>
+        </table>
+    </div>
+</section>

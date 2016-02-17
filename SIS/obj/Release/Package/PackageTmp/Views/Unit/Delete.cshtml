@@ -1,0 +1,60 @@
+﻿@model SIS.Models.Unit
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Unit</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.unit_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.unit_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.unit_code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.unit_code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.unit_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.unit_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.created_by)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.created_by)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.created_date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.created_date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.active_flag)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.active_flag)
+    </div>
+</fieldset>
+@using (Html.BeginForm("DeleteUnit","Unit", FormMethod.Get)) {
+    <p>
+        @Html.Hidden("id", Model.unit_id)
+        <input type="submit" value="Delete" />
+    </p>
+}

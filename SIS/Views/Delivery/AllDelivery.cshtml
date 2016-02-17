@@ -1,0 +1,336 @@
+﻿<div class="ml-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="tab-nav ">
+                    <li><a href="@Url.Action("Index", "Delivery")" class="c-white">For Deliveries</a></li>
+                    <li class="active"><a href="#" class="c-white">All Deliveries</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 text-right">
+                <ul class="ml-nav-right list-inline">
+                    <li class="ml-nav-search">
+                        <div class="fg-line">
+                            <input type="text" class="form-control">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 text-right">
+                <ul class="ml-nav-right list-inline">
+                    <li><a href="#"><img src="img/ksis-icons/sort-icon.png" width="20"></a></li>
+                    <!-- <li><a  data-toggle="modal" href="#ml-add-item"><img src="img/ksis-icons/add-item-icon.png" width="23"></a></li> -->
+                </ul>
+            </div>
+            <!-- Modal Line -->
+            <!-- Modal Default -->
+            <div class="modal fade" id="order-add-item" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Stocks</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <div class="">
+                                    <select class="selectpicker" data-live-search="true" title="he">
+                                        <option>Mustard</option>
+                                        <option>Ketchup</option>
+                                        <option>Relish</option>
+                                        <option>Tent</option>
+                                        <option>Flashlight</option>
+                                        <option>Toilet Paper</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link">Save changes</button>
+                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal -->
+        </div>
+        <button class="ml-add-btn hide btn btn-primary btn-icon waves-effect waves-circle waves-float"><i class="md md-add"></i></button>
+    </div>
+</div>
+
+<aside id="sidebar">
+    <div class="sidebar-inner c-overflow">
+        <div class="profile-menu">
+            <a href="">
+                <div class="profile-pic">
+                    <img src="img/profile-pics/1.jpg" alt="">
+                </div>
+
+                <div class="profile-info">
+                    Malinda Hollaway
+
+                    <i class="md md-arrow-drop-down"></i>
+                </div>
+            </a>
+
+            <ul class="main-menu">
+                <li>
+                    <a href="profile-about.html"><i class="md md-person"></i> View Profile</a>
+                </li>
+                <li>
+                    <a href=""><i class="md md-settings-input-antenna"></i> Privacy Settings</a>
+                </li>
+                <li>
+                    <a href=""><i class="md md-settings"></i> Settings</a>
+                </li>
+                <li>
+                    <a href=""><i class="md md-history"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="main-menu">
+            <li><a href="home.html"><i class="md md-home"></i> Dashboard</a></li>
+            <li class="active"><a href="#"><i class="md md-place"></i>Delivery</a></li>
+            <li><a href="masterlist.html"><i class="md md-view-list"></i>Master List</a></li>
+            <li><a href="orders.html"><i class="md md-shopping-basket"></i> Orders</a></li>
+            <li><a href="reports.html"><i class="md md-equalizer"></i> Reports</a></li>
+        </ul>
+    </div>
+</aside>
+<section id="content">
+    <div class="container">
+        <div class="hs-content">
+            <div class="hs-item hs-item-head">
+                <div class="row ">
+                    <div class="col-xs-11 ">
+                        <div class="row ">
+                            <div class="col-xs-4 hs-item-name ss-item-head">
+                                Today
+                            </div>
+                            <div class="col-xs-2 hs-item-info ss-item-head text-center ">
+                                Items
+                            </div>
+                            <div class="col-xs-3 hs-item-info ss-item-head text-center">
+                                Amount
+                            </div>
+                            <div class="col-xs-3 hs-item-info  ss-item-head ">
+                                Place
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hs-item">
+                <div class="row">
+                    <a href="#ml-item-view" data-toggle="modal">
+                        <div class="col-xs-11 ">
+                            <div class="col-xs-4 hs-item-name">
+                                <span class="hs-item-mode hs-item-mode-delivered"></span>Sir Tom <small>Credit</small>
+                            </div>
+                            <div class="col-xs-2 hs-item-info text-center">
+                                300
+                            </div>
+                            <div class="col-xs-3 hs-item-info text-center">
+                                <span class="text-green">₱ 1, 200</span>
+                            </div>
+                            <div class="col-xs-3 hs-item-name ">
+                                Route 1 — <strong>Villa Azalea</strong>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="hs-item">
+                <div class="row">
+                    <a href="#ml-item-view" data-toggle="modal">
+                        <div class="col-xs-11 ">
+                            <div class="col-xs-4 hs-item-name">
+                                <span class="hs-item-mode hs-item-mode-delivered"></span>Maam Lislee <small>Paid</small>
+                            </div>
+                            <div class="col-xs-2 hs-item-info text-center">
+                                300
+                            </div>
+                            <div class="col-xs-3 hs-item-info text-center">
+                                <span class="text-green">₱ 1, 200</span>
+                            </div>
+                            <div class="col-xs-3 hs-item-name ">
+                                Route 1 — <strong>Villa Azalea</strong>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="hs-item">
+                <div class="row">
+                    <a href="#ml-item-view" data-toggle="modal">
+                        <div class="col-xs-11 ">
+                            <div class="col-xs-4 hs-item-name">
+                                <span class="hs-item-mode hs-item-mode-delivery-cancelled"></span>Madam Sherley <small>Cancelled</small>
+                            </div>
+                            <div class="col-xs-2 hs-item-info text-center">
+                                300
+                            </div>
+                            <div class="col-xs-3 hs-item-info text-center">
+                                <span class="text-green">₱ 1, 200</span>
+                            </div>
+                            <div class="col-xs-3 hs-item-name ">
+                                Route 2 — Korean School
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+        </section>
+
+<footer id="footer" class="hide">
+    Copyright &copy; 2015 Material Admin
+
+    <ul class="f-menu">
+        <li><a href="">Home</a></li>
+        <li><a href="">Dashboard</a></li>
+        <li><a href="">Reports</a></li>
+        <li><a href="">Support</a></li>
+        <li><a href="">Contact</a></li>
+    </ul>
+</footer>
+
+<a id="sale-btn" href="sale.html" class="btn btn-danger btn-icon waves-effect waves-circle waves-float"><i class="md  md-shopping-cart"></i></a>
+
+<!-- Modal Default -->
+<div class="modal fade" id="ml-item-view" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog ml-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="ml-modal-item-small"><span class="hs-item-mode hs-item-mode-delivery"></span> For Delivery </span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-7">
+                        <ul class="list-unstyled">
+                            <li><span class="ml-modal-item-small">Credit</span></li>
+                            <li><span class="ml-modal-item-name">Madam Mercy</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="list-unstyled">
+                            <li><span class="ml-modal-item-small"> Route 1</span></li>
+                            <li><span class="ml-modal-item-name ">Villa Azalea</span> </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="ml-modal-item-separator"></div>
+                <div class="ml-modal-btm-separator"><small>More Info</small> </div>
+                <div class="row ml-modal-btm">
+                    <div class="col-md-7">
+                        <ul class="list-unstyled">
+                            <li><small>Amount </small> <h4>₱ 13,750</h4></li>
+                            <li><small>Time Ordered</small> <h4>12:04 pm</h4></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="list-unstyled">
+                            <li><small>Number of Items</small><h4>300 items</h4></li>
+                            <li><small>Date Ordered</small><h4>Sep 2, 2015</h4></li>
+                        </ul>
+                    </div>
+                </div>
+                <br>
+                <div class="ml-modal-btm-separator"><small><i>Ordered from Cashier Layla  </i></small> </div>
+            </div>
+            <div class="modal-footer ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="view-delivery.html" class="btn btn-link pull-left">View Items</a>
+                        <button type="button" class="btn btn-link " data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ml-item-edit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog ml-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="ml-modal-item-small">Update ITEM #21152</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group m-b-15">
+                    <div class="fg-line">
+                        <small class="ml-modal-item-small">Barcode</small> <input type="text" class="form-control input-sm" placeholder="Input">
+                    </div>
+                </div>
+                <div class="form-group m-b-15">
+                    <div class="fg-line">
+                        <small class="ml-modal-item-small">Description</small> <input type="text" class="form-control input-sm" placeholder="Input">
+                    </div>
+                </div>
+                <div class="form-group m-b-15">
+                    <select class="selectpicker input-lg" data-live-search="true" title="Category">
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                        <option>Tent</option>
+                        <option>Flashlight</option>
+                        <option>Toilet Paper</option>
+                    </select>
+                </div>
+                <div class="form-group m-b-15">
+                    <select class="selectpicker input-lg" data-live-search="true" title="Sub Category">
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                        <option>Tent</option>
+                        <option>Flashlight</option>
+                        <option>Toilet Paper</option>
+                    </select>
+                </div>
+                <div class="form-group m-b-15">
+                    <div class="fg-line">
+                        <small class="ml-modal-item-small">Original Price</small>
+                        <input type="text" class="form-control input-sm" placeholder="Original Price">
+                    </div>
+                </div>
+                <div class="form-group m-b-15">
+                    <div class="fg-line">
+                        <small class="ml-modal-item-small">Selling Price</small>
+                        <input type="text" class="form-control input-sm" placeholder="Selling Price">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-link " data-dismiss="modal">Save Changes</button>
+                        <button type="button" class="btn btn-link " data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ml-item-remove" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog ml-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="ml-modal-item-small">Remove Pin Light</span>
+            </div>
+            <div class="modal-body text-center">
+                <h4 class="text-primary">Are you sure you want to remove this item?</h4>
+            </div>
+            <div class="modal-footer ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-link btn-danger" data-dismiss="modal">Remove</button>
+                        <button type="button" class="btn btn-link " data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

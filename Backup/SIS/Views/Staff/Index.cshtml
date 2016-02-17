@@ -1,0 +1,268 @@
+﻿@model PagedList.IPagedList<SIS.Models.Staff_Info>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<meta charset="utf-8">
+<link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".editModal").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-edit").dialog({
+                title: 'Edit Master List Information',
+                autoOpen: false,
+                resizable: false,
+                height: 500,
+                width: 700,
+                show: { effect: 'drop', direction: "up" },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) {
+                    $(this).load(url);
+
+                },
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).dialog('close');
+                }
+
+            });
+
+            $("#dialog-edit").dialog('open');
+            return false;
+        });
+
+
+        $(".detailModal").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-view").dialog({
+                title: 'Add Account',
+
+                autoOpen: false,
+                resizable: false,
+                height: 500,
+                width: 700,
+                show: { effect: 'drop', direction: "up" },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) {
+                    $(this).load(url);
+
+                },
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).dialog('close');
+                }
+            });
+
+            $("#dialog-view").dialog('open');
+            return false;
+        });
+
+        $("#btncancel").live("click", function (e) {
+            $("#dialog-view").dialog('close');
+
+        });
+
+
+        //alert message implementation
+        $("#formAlert").hide();
+        $('form[name="register"]').on("submit", function (e) {
+            var staff_fname = $(this).find('input[name="staff_fname"]');
+            var staff_lname = $(this).find('input[name="staff_lname"]');
+            var staff_monthly_paid = $(this).find('input[name="staff_monthly_paid"]');
+
+            if ($.trim(staff_fname.val()) === "" || $.trim(staff_lname.val()) === "" || $.trim(staff_monthly_paid.val()) === "") {
+                e.preventDefault();
+                $("#formAlert").slideDown(400);
+            }
+        });
+
+        $(".alert").find(".close").on("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $(this).closest(".alert").slideUp(400);
+        });
+
+    });
+</script>
+ <div class="ml-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="tab-nav ">
+                            <li class="active"><a  href="@Url.Action("Index", "Staff")" class="c-white">Staffs<span class="badge badge-info">@ViewBag.staff</span></a></li>
+                            <li ><a  href="@Url.Action("Index", "Accounts")" class="c-white">Accounts<span class="badge badge-info">@ViewBag.account</span></a></li>
+                            <li ><a  href="@Url.Action("Index", "SystemMenu")" class="c-white">System Menus<span class="badge badge-info">@ViewBag.menu</span></a></li>
+                        </ul>  
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <ul class="ml-nav-right list-inline">
+                            <li class="ml-nav-search"><div class="fg-line">
+                                    @using (Html.BeginForm("Index", "Staff", FormMethod.Get))
+                                    {
+                                        @Html.TextBox("search", ViewBag.CurrentFilter as string, new { @class = "form-control"})
+                                        <p style="display:none"><input type="submit"/></p>
+                                        
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <ul class="ml-nav-right list-inline">
+                            <li>
+                                <a href="@Url.Action("Index", "Staff", new { sortOrder = ViewBag.SortName, currentFilter=ViewBag.CurrentFilter})"><img src="/Images/img/ksis-icons/sort-icon.png" width="20"></a>
+                            </li>
+                            <li><a  data-toggle="modal" data-target="#myModal" href="#"><img src="/Images/img/ksis-icons/add-item-icon.png" width="23"></a></li>
+                        </ul>
+                    </div>
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Add New Staff</h4>
+                              </div>
+                              <div class="modal-body">
+                                    @using (Html.BeginForm("Create", "Staff", FormMethod.Get, new { @name = "register" }))
+                                    {
+                                        @Html.ValidationSummary(true)
+                                            <div id="formAlert" class="alert alert-danger">  
+                                                <a class="close">×</a>  
+                                                <strong>Warning!</strong> Make sure all fields are filled and try again.
+                                            </div>
+                                            <table>
+                                                <tr>
+                                                    <th>
+                                                        Staff Firstname
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="staff_fname" name="staff_fname" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Staff Lastname
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="staff_lname" name="staff_lname" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Monthly Paid
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="staff_monthly_paid" name="staff_monthly_paid" >
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        <button type="submit" class="btn btn-primary" id="addbtn">Add</button>
+                                    }
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+                    
+         <section id="content">
+                <div id="ml-section" class="container">
+                    <div class="hs-content">
+                        <div class="hs-item hs-item-head">
+                            <div class="row ">
+                                <div class="col-xs-10 ">
+                                        <div class="row ">
+                                            <div class="col-xs-3 hs-item-name ss-item-head">
+                                                Fullname
+                                            </div>
+                                            <div class="col-xs-3 hs-item-date ss-item-head">
+                                                Monthly Paid
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                             <div class="hs-item">
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <a   href="#ml-item-view" data-toggle="modal"  >
+                                            <div class="row">
+                                                <div class="col-xs-3 hs-item-name">
+                                                    @if (item.active_flag == true) 
+                                                    { 
+                                                        <i class="md md-check text-success"></i>
+                                                    }else{
+                                                        <i class="md md-clear text-danger"></i>
+                                                    }&emsp;@Html.DisplayFor(modelItem => item.staff_fname)  @Html.DisplayFor(modelItem => item.staff_lname) </div>
+                                                <div class="col-xs-3 hs-item-info">
+                                                    @Html.DisplayFor(modelItem => item.staff_monthly_paid) 
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-2 hs-item-actions">
+                                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                        @Ajax.ActionLink(" E ", "Edit", new { id = item.staff_id },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "Get",
+                                        }, new { @class = "editModal" })</button>
+                                        
+                                        @if (item.account_info_id == null) 
+                                        {
+                                            <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                            @Ajax.ActionLink(" AA ", "AddAccount", new { id = item.staff_id },
+                                            new AjaxOptions
+                                            {
+                                                HttpMethod = "Get",
+                                            }, new { @class = "detailModal" })</button>
+                                        }else{
+                                            <a href="@Url.Action("Index", "Accounts")">View</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <ul class="fw-footer pagination">
+                             @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                         </ul>
+                    </div>
+                </div>
+
+            </section>
+<div id="dialog-confirm" style="display: none"></div>
+<div id="dialog-edit" style="display: none"></div>
+<div id="dialog-view" style="display: none"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

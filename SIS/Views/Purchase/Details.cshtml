@@ -1,0 +1,64 @@
+﻿@model SIS.Models.Product_Purchase
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Product_Purchase</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_purchase_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_purchase_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product_Info.product_desc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product_Info.product_desc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.purchase_qty)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.purchase_qty)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.purchase_new_price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.purchase_new_price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.updated_by)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.updated_by)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.updated_date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.updated_date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.active_flag)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.active_flag)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

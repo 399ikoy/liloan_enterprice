@@ -1,0 +1,298 @@
+﻿@model PagedList.IPagedList<SIS.Models.Expens>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+<meta charset="utf-8">
+<link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+<link href="~/Content/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".editModal").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-edit").dialog({
+                title: 'Edit Information',
+                autoOpen: false,
+                resizable: false,
+                height: 500,
+                width: 700,
+                show: { effect: 'drop', direction: "up" },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) {
+                    $(this).load(url);
+
+                },
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).dialog('close');
+                }
+
+            });
+
+            $("#dialog-edit").dialog('open');
+            return false;
+        });
+
+        $(".deleteModal").live("click", function (e) {
+        	var url = $(this).attr('href');
+        	$("#dialog-confirm").dialog({
+        		title: 'Are you sure you want to delete?',
+
+        		autoOpen: false,
+        		resizable: false,
+        		height: 500,
+        		width: 700,
+        		show: { effect: 'drop', direction: "up" },
+        		modal: true,
+        		draggable: true,
+        		open: function (event, ui) {
+        			$(this).load(url);
+
+        		},
+        		buttons: {
+        			"Close": function () {
+        				$(this).dialog("close");
+
+        			}
+        		},
+        		close: function (event, ui) {
+        			$(this).dialog('close');
+        		}
+        	});
+
+        	$("#dialog-confirm").dialog('open');
+        	return false;
+        });
+
+        $("#btncancel").live("click", function (e) {
+        	$("#dialog-confirm").dialog('close');
+
+        });
+ 
+        //alert message implementation
+        $("#formAlert").hide();
+        $('form[name="register"]').on("submit", function (e) {
+            var expenses_amount = $(this).find('input[name="expenses_amount"]');
+            if ($.trim(expenses_amount.val()) === "") {
+                e.preventDefault();
+                $("#formAlert").slideDown(400);
+            }
+        });
+        $(".alert").find(".close").on("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $(this).closest(".alert").slideUp(400);
+        });
+
+    });
+</script>
+ <div class="ml-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="tab-nav ">
+                            <li class="active"><a  href="#" class="c-white">Expenses</a></li>
+                        </ul>  
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <ul class="ml-nav-right list-inline">
+                            <li class="ml-nav-search"><div class="fg-line">
+                                    @using (Html.BeginForm("Index", "Expenses",FormMethod.Get))
+                                    {
+                                        @Html.TextBox("search", ViewBag.CurrentFilter as string, new { @class = "form-control"})
+                                        <p style="display:none"><input type="submit"/></p>
+                                        
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <ul class="ml-nav-right list-inline">
+                            <li>
+                                <a href="@Url.Action("Index", "Expenses", new { sortOrder = ViewBag.SortType, currentFilter=ViewBag.CurrentFilter})"><img src="/Images/img/ksis-icons/sort-icon.png" width="20"></a>
+                            </li>
+                            <li><a  data-toggle="modal" data-target="#myModal" href="#"><img src="/Images/img/ksis-icons/add-item-icon.png" width="23"></a></li>
+                        </ul>
+                    </div>
+                    <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Add New Product</h4>
+                              </div>
+                              <div class="modal-body">
+                                    @using (Html.BeginForm("Create", "Expenses", FormMethod.Post, new { @name = "register" }))
+                                    {
+                                        @Html.ValidationSummary(true)
+                                            <div id="formAlert" class="alert alert-danger">  
+                                                <a class="close">×</a>  
+                                                <strong>Warning!</strong> Make sure all fields are filled and try again.
+                                            </div>
+                                            <table>
+                                                <tr>
+                                                    <th>
+                                                        Expenses Type
+                                                    </th>
+                                                    <td>
+                                                        @Html.DropDownList("expenses_type")
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Transaction Date
+                                                    </th>
+                                                    <td>
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-addon"><i class="md md-event"></i></span>
+                                                                <div class="dtp-container dropdown fg-line">
+                                                                <input type='text' class="date-picker form-control" data-toggle="dropdown" placeholder="Click here..." name="transaction_date">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Amount Spent
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="expenses_amount" name="expenses_amount" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Remarks
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="remarks" name="remarks" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Staff
+                                                    <td>
+                                                        @Html.DropDownList("staff_id")
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        <button type="submit" class="btn btn-primary" id="addbtn">Add</button>
+                                    }
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+                    
+         <section id="content">
+                <div id="ml-section" class="container">
+                    <div class="hs-content">
+                        <div class="hs-item hs-item-head">
+                            <div class="row ">
+                                <div class="col-xs-10 ">
+                                        <div class="row ">
+                                            <div class="col-xs-3 hs-item-name ss-item-head">
+                                                Type
+                                            </div>
+                                            <div class="col-xs-3 hs-item-date ss-item-head">
+                                               Date
+                                            </div>
+                                            <div class="col-xs-2 hs-item-staff  ss-item-head">
+                                               Amount
+                                            </div>
+                                            <div class="col-xs-2 hs-item-date ss-item-head">
+                                               Remarks
+                                            </div>
+                                            <div class="col-xs-2 hs-item-date ss-item-head">
+                                               Staff
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                             <div class="hs-item">
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <a   href="#ml-item-view" data-toggle="modal"  >
+                                            <div class="row">
+                                                <div class="col-xs-3 hs-item-name">
+                                                    @if (item.active_flag == true) 
+                                                    { 
+                                                        <i class="md md-check text-success"></i>
+                                                    }else{
+                                                        <i class="md md-clear text-danger"></i>
+                                                    }&emsp;
+                                                   @Html.DisplayFor(modelItem => item.expenses_type)
+                                                </div>
+                                                <div class="col-xs-3 hs-item-info">
+                                                     @String.Format("{0:d}", item.transaction_date)
+                                                </div>
+                                                <div class="col-xs-2 hs-item-info">
+                                                    <span class="text-green">₱@Html.DisplayFor(modelItem => item.expenses_amount)</span>
+                                                </div>
+                                                <div class="col-xs-2  ml-sn hs-item-info">
+                                                    @Html.DisplayFor(modelItem => item.remarks)
+                                                </div>
+                                                <div class="col-xs-2  hs-item-info">
+                                                    @Html.DisplayFor(modelItem => item.Staff_Info.staff_fname) @Html.DisplayFor(modelItem => item.Staff_Info.staff_lname) 
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-2 hs-item-actions">
+                                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                        @Ajax.ActionLink("Edit", "Edit", new { id = item.expenses_id },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "Get",
+                                        }, new { @class = "editModal" })</button>
+                                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                        @Ajax.ActionLink("Delete", "Delete", new { id = item.expenses_id },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "Get",
+                                        }, new { @class = "deleteModal" })</button>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <ul class="fw-footer pagination">
+                             @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                         </ul>
+                    </div>
+                </div>
+
+            </section>
+<div id="dialog-confirm" style="display: none"></div>
+<div id="dialog-edit" style="display: none"></div>
+
+<script src="~/Scripts/js/moment.min.js"></script>
+<script src="~/Scripts/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+<script src="~/Scripts/js/fullcalendar.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

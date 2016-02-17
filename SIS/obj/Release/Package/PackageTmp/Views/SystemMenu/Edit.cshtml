@@ -1,0 +1,68 @@
+﻿@model SIS.Models.System_Menus
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.system_menus_id)
+
+    <fieldset>
+        <legend>System_Menus</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.system_menus_id)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.system_menus_id)
+            @Html.ValidationMessageFor(model => model.system_menus_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.sm_description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.sm_description)
+            @Html.ValidationMessageFor(model => model.sm_description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.sm_action_name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.sm_action_name)
+            @Html.ValidationMessageFor(model => model.sm_action_name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.sm_controller)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.sm_controller)
+            @Html.ValidationMessageFor(model => model.sm_controller)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.active_flag)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.active_flag)
+            @Html.ValidationMessageFor(model => model.active_flag)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

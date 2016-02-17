@@ -1,0 +1,22 @@
+﻿@model SIS.Models.Category
+@{
+    ViewBag.Title = "addCategory";
+}
+
+<h2>add Category</h2>
+@using (Html.BeginForm("CategoryAdd", "MasterList", FormMethod.Get))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.category_id)
+    <div class="editor-label">
+        Category Name:
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.category_name)
+        @Html.ValidationMessageFor(model => model.category_name)
+    </div>
+    
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+}

@@ -1,0 +1,38 @@
+﻿@model SIS.Models.Product_Purchase
+
+@{
+    ViewBag.Title = "Edit";
+}
+<meta charset="utf-8">
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Remove_Purchase_Item","Purchase",FormMethod.Get)) {
+    @Html.ValidationSummary(true)
+    @Html.Hidden("id", Model.product_purchase_id)
+    <fieldset>
+        <legend>Product_Info</legend>
+        <div class="editor-label">
+            @Html.Label("Product Info")
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.product_info_id) - 
+            @Html.DisplayFor(model => model.Product_Info.product_desc)
+            @Html.DisplayFor(model => model.Product_Info.product_code)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Purchase_qty")
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.purchase_qty)
+        </div>
+
+        <p>
+            <input type="submit" value="Delete" />
+        </p>
+    </fieldset>
+}
+
+

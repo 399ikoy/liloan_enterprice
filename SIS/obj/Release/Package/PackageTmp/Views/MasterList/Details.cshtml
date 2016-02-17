@@ -1,0 +1,134 @@
+﻿@model SIS.Models.Product_Info
+
+@{
+    ViewBag.Title = "Details";
+}
+<meta charset="utf-8">
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Product_Info</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_info_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_info_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_desc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_desc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.category_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.category_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sub_Category.sub_category_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sub_Category.sub_category_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_orig_price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_orig_price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_sold_price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_sold_price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.unit_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.unit_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_qty)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_qty)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_cut_off)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_cut_off)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.product_remarks)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_remarks)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Supplier_Info.supplier_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Supplier_Info.supplier_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.created_by)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Staff_Info.staff_fname)
+        @Html.DisplayFor(model => model.Staff_Info.staff_lname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.created_date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.created_date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.updated_by)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Staff_Info1.staff_fname)
+        @Html.DisplayFor(model => model.Staff_Info1.staff_lname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.updated_date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.updated_date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.active_flag)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.active_flag)
+    </div>
+</fieldset>

@@ -1,0 +1,840 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sis_dbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="sis_dbModelStoreContainer">
+    <EntitySet Name="Account_Info" EntityType="sis_dbModel.Store.Account_Info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Category" EntityType="sis_dbModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Delivery" EntityType="sis_dbModel.Store.Delivery" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Expenses" EntityType="sis_dbModel.Store.Expenses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Product_Info" EntityType="sis_dbModel.Store.Product_Info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Product_Purchase" EntityType="sis_dbModel.Store.Product_Purchase" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Product_Sales" EntityType="sis_dbModel.Store.Product_Sales" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Purchase_Transactions" EntityType="sis_dbModel.Store.Purchase_Transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Receipt" EntityType="sis_dbModel.Store.Receipt" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Staff_Info" EntityType="sis_dbModel.Store.Staff_Info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sub_Category" EntityType="sis_dbModel.Store.Sub_Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Supplier_Info" EntityType="sis_dbModel.Store.Supplier_Info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="System_Menu_Roles" EntityType="sis_dbModel.Store.System_Menu_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="System_Menus" EntityType="sis_dbModel.Store.System_Menus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Unit" EntityType="sis_dbModel.Store.Unit" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Current_Order_Items" EntityType="sis_dbModel.Store.Current_Order_Items" store:Type="Views" store:Schema="dbo" store:Name="Current_Order_Items">
+      <DefiningQuery>SELECT 
+      [Current_Order_Items].[product_purchase_id] AS [product_purchase_id], 
+      [Current_Order_Items].[product_info_id] AS [product_info_id], 
+      [Current_Order_Items].[purchase_qty] AS [purchase_qty], 
+      [Current_Order_Items].[active_flag] AS [active_flag], 
+      [Current_Order_Items].[product_desc] AS [product_desc], 
+      [Current_Order_Items].[product_code] AS [product_code], 
+      [Current_Order_Items].[category_name] AS [category_name], 
+      [Current_Order_Items].[sub_category_name] AS [sub_category_name], 
+      [Current_Order_Items].[product_orig_price] AS [product_orig_price], 
+      [Current_Order_Items].[product_qty] AS [product_qty], 
+      [Current_Order_Items].[unit_code] AS [unit_code]
+      FROM [dbo].[Current_Order_Items] AS [Current_Order_Items]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Expenses_Type_vw" EntityType="sis_dbModel.Store.Expenses_Type_vw" store:Type="Views" store:Schema="dbo" store:Name="Expenses_Type_vw">
+      <DefiningQuery>SELECT 
+      [Expenses_Type_vw].[expenses_type] AS [expenses_type]
+      FROM [dbo].[Expenses_Type_vw] AS [Expenses_Type_vw]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Out_Of_Stock_Transactions_vw" EntityType="sis_dbModel.Store.Out_Of_Stock_Transactions_vw" store:Type="Views" store:Schema="dbo" store:Name="Out_Of_Stock_Transactions_vw">
+      <DefiningQuery>SELECT 
+      [Out_Of_Stock_Transactions_vw].[product_info_id] AS [product_info_id], 
+      [Out_Of_Stock_Transactions_vw].[product_code] AS [product_code], 
+      [Out_Of_Stock_Transactions_vw].[product_desc] AS [product_desc], 
+      [Out_Of_Stock_Transactions_vw].[category_name] AS [category_name], 
+      [Out_Of_Stock_Transactions_vw].[sub_category_name] AS [sub_category_name], 
+      [Out_Of_Stock_Transactions_vw].[product_orig_price] AS [product_orig_price], 
+      [Out_Of_Stock_Transactions_vw].[product_qty] AS [product_qty], 
+      [Out_Of_Stock_Transactions_vw].[unit_code] AS [unit_code], 
+      [Out_Of_Stock_Transactions_vw].[active_flag] AS [active_flag], 
+      [Out_Of_Stock_Transactions_vw].[pt_id] AS [pt_id], 
+      [Out_Of_Stock_Transactions_vw].[product_purchase_id] AS [product_purchase_id]
+      FROM [dbo].[Out_Of_Stock_Transactions_vw] AS [Out_Of_Stock_Transactions_vw]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Out_Of_Stock_vw" EntityType="sis_dbModel.Store.Out_Of_Stock_vw" store:Type="Views" store:Schema="dbo" store:Name="Out_Of_Stock_vw">
+      <DefiningQuery>SELECT 
+      [Out_Of_Stock_vw].[product_info_id] AS [product_info_id], 
+      [Out_Of_Stock_vw].[product_code] AS [product_code], 
+      [Out_Of_Stock_vw].[product_desc] AS [product_desc], 
+      [Out_Of_Stock_vw].[category_name] AS [category_name], 
+      [Out_Of_Stock_vw].[sub_category_name] AS [sub_category_name], 
+      [Out_Of_Stock_vw].[product_orig_price] AS [product_orig_price], 
+      [Out_Of_Stock_vw].[product_qty] AS [product_qty], 
+      [Out_Of_Stock_vw].[unit_code] AS [unit_code], 
+      [Out_Of_Stock_vw].[active_flag] AS [active_flag]
+      FROM [dbo].[Out_Of_Stock_vw] AS [Out_Of_Stock_vw]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Product_Info_vw" EntityType="sis_dbModel.Store.Product_Info_vw" store:Type="Views" store:Schema="dbo" store:Name="Product_Info_vw">
+      <DefiningQuery>SELECT 
+      [Product_Info_vw].[product_info_id] AS [product_info_id], 
+      [Product_Info_vw].[product_desc] AS [product_desc], 
+      [Product_Info_vw].[category_name] AS [category_name], 
+      [Product_Info_vw].[category_id] AS [category_id], 
+      [Product_Info_vw].[sub_category_id] AS [sub_category_id], 
+      [Product_Info_vw].[sub_category_name] AS [sub_category_name], 
+      [Product_Info_vw].[product_orig_price] AS [product_orig_price], 
+      [Product_Info_vw].[product_sold_price] AS [product_sold_price], 
+      [Product_Info_vw].[unit_id] AS [unit_id], 
+      [Product_Info_vw].[unit_code] AS [unit_code], 
+      [Product_Info_vw].[unit_name] AS [unit_name], 
+      [Product_Info_vw].[product_code] AS [product_code], 
+      [Product_Info_vw].[product_qty] AS [product_qty], 
+      [Product_Info_vw].[product_cut_off] AS [product_cut_off], 
+      [Product_Info_vw].[product_remarks] AS [product_remarks], 
+      [Product_Info_vw].[supplier_name] AS [supplier_name], 
+      [Product_Info_vw].[created_fname] AS [created_fname], 
+      [Product_Info_vw].[created_lname] AS [created_lname], 
+      [Product_Info_vw].[updated_fname] AS [updated_fname], 
+      [Product_Info_vw].[updated_lname] AS [updated_lname], 
+      [Product_Info_vw].[updated_by] AS [updated_by], 
+      [Product_Info_vw].[updated_date] AS [updated_date], 
+      [Product_Info_vw].[active_flag] AS [active_flag], 
+      [Product_Info_vw].[complete_info] AS [complete_info]
+      FROM [dbo].[Product_Info_vw] AS [Product_Info_vw]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PT_OrderedList_vw" EntityType="sis_dbModel.Store.PT_OrderedList_vw" store:Type="Views" store:Schema="dbo" store:Name="PT_OrderedList_vw">
+      <DefiningQuery>SELECT 
+      [PT_OrderedList_vw].[pt_id] AS [pt_id], 
+      [PT_OrderedList_vw].[purchase_name] AS [purchase_name], 
+      [PT_OrderedList_vw].[expected_date] AS [expected_date], 
+      [PT_OrderedList_vw].[purchase_date] AS [purchase_date], 
+      [PT_OrderedList_vw].[status] AS [status], 
+      [PT_OrderedList_vw].[supplier_name] AS [supplier_name], 
+      [PT_OrderedList_vw].[staff_fname] AS [staff_fname], 
+      [PT_OrderedList_vw].[staff_lname] AS [staff_lname], 
+      [PT_OrderedList_vw].[totalPT] AS [totalPT], 
+      [PT_OrderedList_vw].[no_item] AS [no_item]
+      FROM [dbo].[PT_OrderedList_vw] AS [PT_OrderedList_vw]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Purchase_Transactions_vw" EntityType="sis_dbModel.Store.Purchase_Transactions_vw" store:Type="Views" store:Schema="dbo" store:Name="Purchase_Transactions_vw">
+      <DefiningQuery>SELECT 
+      [Purchase_Transactions_vw].[pt_id] AS [pt_id], 
+      [Purchase_Transactions_vw].[purchase_name] AS [purchase_name], 
+      [Purchase_Transactions_vw].[expected_date] AS [expected_date], 
+      [Purchase_Transactions_vw].[purchase_date] AS [purchase_date], 
+      [Purchase_Transactions_vw].[product_purchase_id] AS [product_purchase_id], 
+      [Purchase_Transactions_vw].[status] AS [status], 
+      [Purchase_Transactions_vw].[product_info_id] AS [product_info_id], 
+      [Purchase_Transactions_vw].[purchase_qty] AS [purchase_qty], 
+      [Purchase_Transactions_vw].[purchase_new_price] AS [purchase_new_price], 
+      [Purchase_Transactions_vw].[active_flag] AS [active_flag], 
+      [Purchase_Transactions_vw].[product_code] AS [product_code], 
+      [Purchase_Transactions_vw].[product_desc] AS [product_desc], 
+      [Purchase_Transactions_vw].[category_name] AS [category_name], 
+      [Purchase_Transactions_vw].[sub_category_name] AS [sub_category_name]
+      FROM [dbo].[Purchase_Transactions_vw] AS [Purchase_Transactions_vw]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Reff_Out_Of_Stock_vw" EntityType="sis_dbModel.Store.Reff_Out_Of_Stock_vw" store:Type="Views" store:Schema="dbo" store:Name="Reff_Out_Of_Stock_vw">
+      <DefiningQuery>SELECT 
+      [Reff_Out_Of_Stock_vw].[product_purchase_id] AS [product_purchase_id], 
+      [Reff_Out_Of_Stock_vw].[product_info_id] AS [product_info_id], 
+      [Reff_Out_Of_Stock_vw].[purchase_qty] AS [purchase_qty], 
+      [Reff_Out_Of_Stock_vw].[purchase_new_price] AS [purchase_new_price], 
+      [Reff_Out_Of_Stock_vw].[active_flag] AS [active_flag], 
+      [Reff_Out_Of_Stock_vw].[pt_id] AS [pt_id]
+      FROM [dbo].[Reff_Out_Of_Stock_vw] AS [Reff_Out_Of_Stock_vw]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_cat" Association="sis_dbModel.Store.FK_cat">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Delivery_ToTable" Association="sis_dbModel.Store.FK_Delivery_ToTable">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Delivery" EntitySet="Delivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expenses_ToTable" Association="sis_dbModel.Store.FK_Expenses_ToTable">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Expenses" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expenses_ToTable_1" Association="sis_dbModel.Store.FK_Expenses_ToTable_1">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Expenses" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Info_ToTable" Association="sis_dbModel.Store.FK_Product_Info_ToTable">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Info_ToTable_1" Association="sis_dbModel.Store.FK_Product_Info_ToTable_1">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Info_ToTable_2" Association="sis_dbModel.Store.FK_Product_Info_ToTable_2">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Purchase_ToTable" Association="sis_dbModel.Store.FK_Product_Purchase_ToTable">
+      <End Role="Product_Info" EntitySet="Product_Info" />
+      <End Role="Product_Purchase" EntitySet="Product_Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Purchase_ToTable_1" Association="sis_dbModel.Store.FK_Product_Purchase_ToTable_1">
+      <End Role="Purchase_Transactions" EntitySet="Purchase_Transactions" />
+      <End Role="Product_Purchase" EntitySet="Product_Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Sales_ToTable" Association="sis_dbModel.Store.FK_Product_Sales_ToTable">
+      <End Role="Product_Info" EntitySet="Product_Info" />
+      <End Role="Product_Sales" EntitySet="Product_Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Sales_ToTable_1" Association="sis_dbModel.Store.FK_Product_Sales_ToTable_1">
+      <End Role="Receipt" EntitySet="Receipt" />
+      <End Role="Product_Sales" EntitySet="Product_Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Sales_ToTable_2" Association="sis_dbModel.Store.FK_Product_Sales_ToTable_2">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Product_Sales" EntitySet="Product_Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Transactions_ToTable" Association="sis_dbModel.Store.FK_Purchase_Transactions_ToTable">
+      <End Role="Supplier_Info" EntitySet="Supplier_Info" />
+      <End Role="Purchase_Transactions" EntitySet="Purchase_Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Transactions_ToTable_1" Association="sis_dbModel.Store.FK_Purchase_Transactions_ToTable_1">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Purchase_Transactions" EntitySet="Purchase_Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_receipt" Association="sis_dbModel.Store.FK_receipt">
+      <End Role="Receipt" EntitySet="Receipt" />
+      <End Role="Delivery" EntitySet="Delivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Receipt_ToTable" Association="sis_dbModel.Store.FK_Receipt_ToTable">
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+      <End Role="Receipt" EntitySet="Receipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Info_ToTable" Association="sis_dbModel.Store.FK_Staff_Info_ToTable">
+      <End Role="Account_Info" EntitySet="Account_Info" />
+      <End Role="Staff_Info" EntitySet="Staff_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sub_cat" Association="sis_dbModel.Store.FK_sub_cat">
+      <End Role="Sub_Category" EntitySet="Sub_Category" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sub_Category_ToTable" Association="sis_dbModel.Store.FK_Sub_Category_ToTable">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Sub_Category" EntitySet="Sub_Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier" Association="sis_dbModel.Store.FK_Supplier">
+      <End Role="Supplier_Info" EntitySet="Supplier_Info" />
+      <End Role="Product_Info" EntitySet="Product_Info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_System_Menu_Roles_ToTable" Association="sis_dbModel.Store.FK_System_Menu_Roles_ToTable">
+      <End Role="Account_Info" EntitySet="Account_Info" />
+      <End Role="System_Menu_Roles" EntitySet="System_Menu_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_System_Menu_Roles_ToTable_1" Association="sis_dbModel.Store.FK_System_Menu_Roles_ToTable_1">
+      <End Role="System_Menus" EntitySet="System_Menus" />
+      <End Role="System_Menu_Roles" EntitySet="System_Menu_Roles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account_Info">
+    <Key>
+      <PropertyRef Name="account_info_id" />
+    </Key>
+    <Property Name="account_info_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="active_flag" Type="bit" />
+    <Property Name="login" Type="bit" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_by" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
+    <Property Name="updated_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="Delivery">
+    <Key>
+      <PropertyRef Name="delivery_id" />
+    </Key>
+    <Property Name="delivery_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="receipt_id" Type="int" />
+    <Property Name="delivery_date" Type="datetime" />
+    <Property Name="customer_location" Type="nvarchar" MaxLength="50" />
+    <Property Name="delivery_route" Type="int" />
+    <Property Name="customer_contact" Type="nchar" MaxLength="20" />
+    <Property Name="staff_id" Type="int" />
+    <Property Name="updated_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="Expenses">
+    <Key>
+      <PropertyRef Name="expenses_id" />
+    </Key>
+    <Property Name="expenses_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="expenses_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="transaction_date" Type="datetime" />
+    <Property Name="expenses_amount" Type="float" />
+    <Property Name="remarks" Type="text" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" />
+    <Property Name="staff_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Product_Info">
+    <Key>
+      <PropertyRef Name="product_info_id" />
+    </Key>
+    <Property Name="product_info_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="product_desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="sub_category_id" Type="int" />
+    <Property Name="product_orig_price" Type="float" />
+    <Property Name="product_sold_price" Type="float" />
+    <Property Name="unit_id" Type="int" />
+    <Property Name="product_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_qty" Type="float" />
+    <Property Name="product_cut_off" Type="float" />
+    <Property Name="product_remarks" Type="ntext" />
+    <Property Name="supplier_info_id" Type="int" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product_Purchase">
+    <Key>
+      <PropertyRef Name="product_purchase_id" />
+    </Key>
+    <Property Name="product_purchase_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="product_info_id" Type="int" />
+    <Property Name="purchase_qty" Type="float" />
+    <Property Name="purchase_new_price" Type="float" />
+    <Property Name="active_flag" Type="bit" />
+    <Property Name="pt_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Product_Sales">
+    <Key>
+      <PropertyRef Name="product_sales_id" />
+    </Key>
+    <Property Name="product_sales_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="product_info_id" Type="int" />
+    <Property Name="quantity_sold" Type="float" />
+    <Property Name="receipt_id" Type="int" />
+    <Property Name="sold_by" Type="int" />
+    <Property Name="sold_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="Purchase_Transactions">
+    <Key>
+      <PropertyRef Name="pt_id" />
+    </Key>
+    <Property Name="pt_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="purchase_name" Type="nvarchar(max)" />
+    <Property Name="purchase_date" Type="datetime" />
+    <Property Name="supplier_id" Type="int" />
+    <Property Name="expected_date" Type="datetime" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_by" Type="int" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="receipt_id" />
+    </Key>
+    <Property Name="receipt_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="customer_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="shipping_status" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_status" Type="nvarchar" MaxLength="50" />
+    <Property Name="discount" Type="float" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="Staff_Info">
+    <Key>
+      <PropertyRef Name="staff_id" />
+    </Key>
+    <Property Name="staff_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="staff_fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="staff_lname" Type="nvarchar" MaxLength="50" />
+    <Property Name="account_info_id" Type="int" />
+    <Property Name="staff_monthly_paid" Type="float" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="Sub_Category">
+    <Key>
+      <PropertyRef Name="sub_category_id" />
+    </Key>
+    <Property Name="sub_category_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="sub_category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_by" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
+    <Property Name="updated_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" />
+    <Property Name="category_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Supplier_Info">
+    <Key>
+      <PropertyRef Name="supplier_info_id" />
+    </Key>
+    <Property Name="supplier_info_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="supplier_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="supplier_contact_info" Type="nchar" MaxLength="20" />
+    <Property Name="supplier_contact_person" Type="nvarchar" MaxLength="50" />
+    <Property Name="supplier_address" Type="nvarchar" MaxLength="50" />
+    <Property Name="company_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="System_Menu_Roles">
+    <Key>
+      <PropertyRef Name="system_menu_roles_id" />
+    </Key>
+    <Property Name="system_menu_roles_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="account_info_id" Type="int" />
+    <Property Name="system_menus_id" Type="int" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="System_Menus">
+    <Key>
+      <PropertyRef Name="system_menus_id" />
+    </Key>
+    <Property Name="system_menus_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="sm_description" Type="nvarchar" MaxLength="50" />
+    <Property Name="sm_action_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sm_controller" Type="nvarchar" MaxLength="50" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="unit_id" />
+    </Key>
+    <Property Name="unit_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="unit_code" Type="nchar" MaxLength="10" />
+    <Property Name="unit_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_by" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.Current_Order_Items' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Current_Order_Items">
+    <Key>
+      <PropertyRef Name="product_purchase_id" />
+    </Key>
+    <Property Name="product_purchase_id" Type="int" Nullable="false" />
+    <Property Name="product_info_id" Type="int" />
+    <Property Name="purchase_qty" Type="float" />
+    <Property Name="active_flag" Type="bit" />
+    <Property Name="product_desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sub_category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_orig_price" Type="float" />
+    <Property Name="product_qty" Type="float" />
+    <Property Name="unit_code" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.Expenses_Type_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Expenses_Type_vw">
+    <Key>
+      <PropertyRef Name="expenses_type" />
+    </Key>
+    <Property Name="expenses_type" Type="varchar" Nullable="false" MaxLength="8" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.Out_Of_Stock_Transactions_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Out_Of_Stock_Transactions_vw">
+    <Key>
+      <PropertyRef Name="product_info_id" />
+      <PropertyRef Name="active_flag" />
+    </Key>
+    <Property Name="product_info_id" Type="int" Nullable="false" />
+    <Property Name="product_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sub_category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_orig_price" Type="float" />
+    <Property Name="product_qty" Type="float" />
+    <Property Name="unit_code" Type="nchar" MaxLength="10" />
+    <Property Name="active_flag" Type="bit" Nullable="false" />
+    <Property Name="pt_id" Type="int" />
+    <Property Name="product_purchase_id" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.Out_Of_Stock_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Out_Of_Stock_vw">
+    <Key>
+      <PropertyRef Name="product_info_id" />
+      <PropertyRef Name="active_flag" />
+    </Key>
+    <Property Name="product_info_id" Type="int" Nullable="false" />
+    <Property Name="product_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sub_category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_orig_price" Type="float" />
+    <Property Name="product_qty" Type="float" />
+    <Property Name="unit_code" Type="nchar" MaxLength="10" />
+    <Property Name="active_flag" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.Product_Info_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Product_Info_vw">
+    <Key>
+      <PropertyRef Name="product_info_id" />
+      <PropertyRef Name="active_flag" />
+    </Key>
+    <Property Name="product_info_id" Type="int" Nullable="false" />
+    <Property Name="product_desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="sub_category_id" Type="int" />
+    <Property Name="sub_category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_orig_price" Type="float" />
+    <Property Name="product_sold_price" Type="float" />
+    <Property Name="unit_id" Type="int" />
+    <Property Name="unit_code" Type="nchar" MaxLength="10" />
+    <Property Name="unit_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_qty" Type="float" />
+    <Property Name="product_cut_off" Type="float" />
+    <Property Name="product_remarks" Type="ntext" />
+    <Property Name="supplier_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_lname" Type="nvarchar" MaxLength="50" />
+    <Property Name="updated_fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="updated_lname" Type="nvarchar" MaxLength="50" />
+    <Property Name="updated_by" Type="int" />
+    <Property Name="updated_date" Type="datetime" />
+    <Property Name="active_flag" Type="bit" Nullable="false" />
+    <Property Name="complete_info" Type="nvarchar" MaxLength="203" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.PT_OrderedList_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="PT_OrderedList_vw">
+    <Key>
+      <PropertyRef Name="pt_id" />
+    </Key>
+    <Property Name="pt_id" Type="int" Nullable="false" />
+    <Property Name="purchase_name" Type="nvarchar(max)" />
+    <Property Name="expected_date" Type="datetime" />
+    <Property Name="purchase_date" Type="datetime" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="supplier_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="staff_fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="staff_lname" Type="nvarchar" MaxLength="50" />
+    <Property Name="totalPT" Type="float" />
+    <Property Name="no_item" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.Purchase_Transactions_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Purchase_Transactions_vw">
+    <Key>
+      <PropertyRef Name="pt_id" />
+      <PropertyRef Name="product_purchase_id" />
+    </Key>
+    <Property Name="pt_id" Type="int" Nullable="false" />
+    <Property Name="purchase_name" Type="nvarchar(max)" />
+    <Property Name="expected_date" Type="datetime" />
+    <Property Name="purchase_date" Type="datetime" />
+    <Property Name="product_purchase_id" Type="int" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_info_id" Type="int" />
+    <Property Name="purchase_qty" Type="float" />
+    <Property Name="purchase_new_price" Type="float" />
+    <Property Name="active_flag" Type="bit" />
+    <Property Name="product_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="product_desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sub_category_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.Reff_Out_Of_Stock_vw' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Reff_Out_Of_Stock_vw">
+    <Key>
+      <PropertyRef Name="product_purchase_id" />
+    </Key>
+    <Property Name="product_purchase_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="product_info_id" Type="int" />
+    <Property Name="purchase_qty" Type="float" />
+    <Property Name="purchase_new_price" Type="float" />
+    <Property Name="active_flag" Type="bit" />
+    <Property Name="pt_id" Type="int" />
+  </EntityType>
+  <Association Name="FK_cat">
+    <End Role="Category" Type="sis_dbModel.Store.Category" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="sis_dbModel.Store.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Delivery_ToTable">
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="0..1" />
+    <End Role="Delivery" Type="sis_dbModel.Store.Delivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expenses_ToTable">
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="0..1" />
+    <End Role="Expenses" Type="sis_dbModel.Store.Expenses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Expenses">
+        <PropertyRef Name="staff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expenses_ToTable_1">
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="0..1" />
+    <End Role="Expenses" Type="sis_dbModel.Store.Expenses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Expenses">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Info_ToTable">
+    <End Role="Unit" Type="sis_dbModel.Store.Unit" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="sis_dbModel.Store.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="unit_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="unit_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Info_ToTable_1">
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="sis_dbModel.Store.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Info_ToTable_2">
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="sis_dbModel.Store.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="updated_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Purchase_ToTable">
+    <End Role="Product_Info" Type="sis_dbModel.Store.Product_Info" Multiplicity="0..1" />
+    <End Role="Product_Purchase" Type="sis_dbModel.Store.Product_Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Info">
+        <PropertyRef Name="product_info_id" />
+      </Principal>
+      <Dependent Role="Product_Purchase">
+        <PropertyRef Name="product_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Purchase_ToTable_1">
+    <End Role="Purchase_Transactions" Type="sis_dbModel.Store.Purchase_Transactions" Multiplicity="0..1" />
+    <End Role="Product_Purchase" Type="sis_dbModel.Store.Product_Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase_Transactions">
+        <PropertyRef Name="pt_id" />
+      </Principal>
+      <Dependent Role="Product_Purchase">
+        <PropertyRef Name="pt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Sales_ToTable">
+    <End Role="Product_Info" Type="sis_dbModel.Store.Product_Info" Multiplicity="0..1" />
+    <End Role="Product_Sales" Type="sis_dbModel.Store.Product_Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Info">
+        <PropertyRef Name="product_info_id" />
+      </Principal>
+      <Dependent Role="Product_Sales">
+        <PropertyRef Name="product_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Sales_ToTable_1">
+    <End Role="Receipt" Type="sis_dbModel.Store.Receipt" Multiplicity="0..1" />
+    <End Role="Product_Sales" Type="sis_dbModel.Store.Product_Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Receipt">
+        <PropertyRef Name="receipt_id" />
+      </Principal>
+      <Dependent Role="Product_Sales">
+        <PropertyRef Name="receipt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Sales_ToTable_2">
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="0..1" />
+    <End Role="Product_Sales" Type="sis_dbModel.Store.Product_Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Product_Sales">
+        <PropertyRef Name="sold_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Transactions_ToTable">
+    <End Role="Supplier_Info" Type="sis_dbModel.Store.Supplier_Info" Multiplicity="0..1" />
+    <End Role="Purchase_Transactions" Type="sis_dbModel.Store.Purchase_Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier_Info">
+        <PropertyRef Name="supplier_info_id" />
+      </Principal>
+      <Dependent Role="Purchase_Transactions">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Transactions_ToTable_1">
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="0..1" />
+    <End Role="Purchase_Transactions" Type="sis_dbModel.Store.Purchase_Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Purchase_Transactions">
+        <PropertyRef Name="order_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_receipt">
+    <End Role="Receipt" Type="sis_dbModel.Store.Receipt" Multiplicity="0..1" />
+    <End Role="Delivery" Type="sis_dbModel.Store.Delivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Receipt">
+        <PropertyRef Name="receipt_id" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="receipt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Receipt_ToTable">
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="0..1" />
+    <End Role="Receipt" Type="sis_dbModel.Store.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Info">
+        <PropertyRef Name="staff_id" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Info_ToTable">
+    <End Role="Account_Info" Type="sis_dbModel.Store.Account_Info" Multiplicity="0..1" />
+    <End Role="Staff_Info" Type="sis_dbModel.Store.Staff_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account_Info">
+        <PropertyRef Name="account_info_id" />
+      </Principal>
+      <Dependent Role="Staff_Info">
+        <PropertyRef Name="account_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sub_cat">
+    <End Role="Sub_Category" Type="sis_dbModel.Store.Sub_Category" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="sis_dbModel.Store.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sub_Category">
+        <PropertyRef Name="sub_category_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="sub_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sub_Category_ToTable">
+    <End Role="Category" Type="sis_dbModel.Store.Category" Multiplicity="0..1" />
+    <End Role="Sub_Category" Type="sis_dbModel.Store.Sub_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Sub_Category">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier">
+    <End Role="Supplier_Info" Type="sis_dbModel.Store.Supplier_Info" Multiplicity="0..1" />
+    <End Role="Product_Info" Type="sis_dbModel.Store.Product_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier_Info">
+        <PropertyRef Name="supplier_info_id" />
+      </Principal>
+      <Dependent Role="Product_Info">
+        <PropertyRef Name="supplier_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_System_Menu_Roles_ToTable">
+    <End Role="Account_Info" Type="sis_dbModel.Store.Account_Info" Multiplicity="0..1" />
+    <End Role="System_Menu_Roles" Type="sis_dbModel.Store.System_Menu_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account_Info">
+        <PropertyRef Name="account_info_id" />
+      </Principal>
+      <Dependent Role="System_Menu_Roles">
+        <PropertyRef Name="account_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_System_Menu_Roles_ToTable_1">
+    <End Role="System_Menus" Type="sis_dbModel.Store.System_Menus" Multiplicity="0..1" />
+    <End Role="System_Menu_Roles" Type="sis_dbModel.Store.System_Menu_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="System_Menus">
+        <PropertyRef Name="system_menus_id" />
+      </Principal>
+      <Dependent Role="System_Menu_Roles">
+        <PropertyRef Name="system_menus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'H:\THESIS\SIS-JEN\SIS\APP_DATA\SIS_DB.MDF.dbo.PT_Monthly_vw' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="PT_Monthly_vw">
+        <Property Name="Year_PT" Type="int" />
+        <Property Name="Month_PT" Type="int" />
+        <Property Name="totalPT" Type="float" />
+        <Property Name="no_item" Type="int" />
+      </EntityType>-->
+</Schema>

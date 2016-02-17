@@ -1,0 +1,172 @@
+﻿        <header id="header">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+            
+                <li class="logo hidden-xs">
+                    <a href="@Url.Action("Index","Home")"><img src="/Images/img/ksis-white.png" width="20"></a>
+                </li>
+                <li>
+                    <span class="page-title"><i class="md md-equalizer"></i> Reports</span>
+                </li>
+                <li class="pull-right">
+                <ul class="top-menu">
+                    <li id="toggle-width" class="hidden-xs hide">
+                        <div class="toggle-switch">
+                            <input id="tw-switch" type="checkbox" hidden="hidden">
+                            <label for="tw-switch" class="ts-helper"></label>
+                        </div>
+                    </li>
+                    <li id="top-search" class="hide">
+                        <a class="tm-search" href=""></a>
+                    </li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <!-- Top Search Content -->
+            <div id="top-search-wrap">
+                <input type="text">
+                <i id="top-search-close">&times;</i>
+            </div>
+        </header>
+        
+        <section id="main">
+            
+            <section id="home-content">
+                <section class="homescreen-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mini-charts-item bgm-blue">
+                                    <div class="clearfix">
+                                        <div class="chart stats-line"></div>
+                                        <div class="count">
+                                            <small>Profit Statistics</small>
+                                            <h2>$ 458,778</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mini-charts-item bgm-blue">
+                                    <div class="clearfix">
+                                        <div class="chart stats-line"></div>
+                                        <div class="count">
+                                            <small>Sales Statistics</small>
+                                            <h2>$ 1,000,778</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mini-charts-item bgm-blue">
+                                    <div class="clearfix">
+                                        <div class="chart stats-line"></div>
+                                        <div class="count">
+                                            <small>Delivery Statistics</small>
+                                            <h2>5 Deliveries</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mini-charts-item bgm-blue">
+                                    <div class="clearfix">
+                                        <div class="chart stats-line"></div>
+                                        <div class="count">
+                                            <small>Purchase Statistics</small>
+                                            <h2>$ 900,000</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card">
+                                <div class="card-header">
+                                    <h2>Purchase Reports for Year @System.DateTime.Now.Year</h2>
+                                    <!--<ul class="actions">
+                                        <li class="dropdown action-show">
+                                            <a href="" data-toggle="dropdown">
+                                                <i class="md md-more-vert"></i>
+                                            </a>
+                            
+                                            <div class="dropdown-menu pull-right">
+                                                <p class="p-20">
+                                                    You can put anything here
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>-->
+
+                                </div>
+                                
+                                <div class="card-body card-padding-sm">
+                                    <div id="placeholder" style="width: 500px; height: 300px;"></div>
+                                </div>
+                            </div>
+
+                            </div>
+                    </div>
+                </section>
+                <div class="container">
+                    <div class="card hide">
+                        <div class="card-header">
+                            <h2>Sales Statistics <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small></h2>
+                            
+                            <ul class="actions">
+                                <li>
+                                    <a href="">
+                                        <i class="md md-cached"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="md md-file-download"></i>
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="" data-toggle="dropdown">
+                                        <i class="md md-more-vert"></i>
+                                    </a>
+                                    
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a href="">Change Date Range</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Change Graph Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Other Settings</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="chart-edge">
+                                <div id="curved-line-chart" class="flot-chart "></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </section>
+
+        @*<section style="width: 500px; margin: 10px; text-align:center;">
+               <div id="placeholder" style="width: 500px; height: 300px;">
+               </div>
+               <h3 style="font-size:1.4em">Traffic Overview - 2012 </h3>
+         </section>*@
+
+        <script src="~/Scripts/js/flot-charts/bar-chart.js"></script>
+        <script src="~/Scripts/js/jquery.flot.min.js"></script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

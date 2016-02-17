@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SIS_DBModelStoreContainer" CdmEntityContainer="sis_dbEntities">
+    <EntitySetMapping Name="Account_Info">
+      <EntityTypeMapping TypeName="SIS_DBModel.Account_Info">
+        <MappingFragment StoreEntitySet="Account_Info">
+          <ScalarProperty Name="account_info_id" ColumnName="account_info_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="SIS_DBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deliveries">
+      <EntityTypeMapping TypeName="SIS_DBModel.Delivery">
+        <MappingFragment StoreEntitySet="Delivery">
+          <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+          <ScalarProperty Name="receipt_id" ColumnName="receipt_id" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="customer_location" ColumnName="customer_location" />
+          <ScalarProperty Name="delivery_route" ColumnName="delivery_route" />
+          <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expenses">
+      <EntityTypeMapping TypeName="SIS_DBModel.Expens">
+        <MappingFragment StoreEntitySet="Expenses">
+          <ScalarProperty Name="expenses_id" ColumnName="expenses_id" />
+          <ScalarProperty Name="expenses_type" ColumnName="expenses_type" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="expenses_amount" ColumnName="expenses_amount" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Info">
+      <EntityTypeMapping TypeName="SIS_DBModel.Product_Info">
+        <MappingFragment StoreEntitySet="Product_Info">
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="sub_category_id" ColumnName="sub_category_id" />
+          <ScalarProperty Name="product_orig_price" ColumnName="product_orig_price" />
+          <ScalarProperty Name="product_sold_price" ColumnName="product_sold_price" />
+          <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="product_qty" ColumnName="product_qty" />
+          <ScalarProperty Name="product_cut_off" ColumnName="product_cut_off" />
+          <ScalarProperty Name="product_remarks" ColumnName="product_remarks" />
+          <ScalarProperty Name="supplier_info_id" ColumnName="supplier_info_id" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Purchase">
+      <EntityTypeMapping TypeName="SIS_DBModel.Product_Purchase">
+        <MappingFragment StoreEntitySet="Product_Purchase">
+          <ScalarProperty Name="product_purchase_id" ColumnName="product_purchase_id" />
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="purchase_qty" ColumnName="purchase_qty" />
+          <ScalarProperty Name="purchase_new_price" ColumnName="purchase_new_price" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Sales">
+      <EntityTypeMapping TypeName="SIS_DBModel.Product_Sales">
+        <MappingFragment StoreEntitySet="Product_Sales">
+          <ScalarProperty Name="product_sales_id" ColumnName="product_sales_id" />
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="quantity_sold" ColumnName="quantity_sold" />
+          <ScalarProperty Name="receipt_id" ColumnName="receipt_id" />
+          <ScalarProperty Name="sold_by" ColumnName="sold_by" />
+          <ScalarProperty Name="sold_date" ColumnName="sold_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchase_Transactions">
+      <EntityTypeMapping TypeName="SIS_DBModel.Purchase_Transactions">
+        <MappingFragment StoreEntitySet="Purchase_Transactions">
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+          <ScalarProperty Name="purchase_name" ColumnName="purchase_name" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="expected_date" ColumnName="expected_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="order_by" ColumnName="order_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Receipts">
+      <EntityTypeMapping TypeName="SIS_DBModel.Receipt">
+        <MappingFragment StoreEntitySet="Receipt">
+          <ScalarProperty Name="receipt_id" ColumnName="receipt_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="shipping_status" ColumnName="shipping_status" />
+          <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff_Info">
+      <EntityTypeMapping TypeName="SIS_DBModel.Staff_Info">
+        <MappingFragment StoreEntitySet="Staff_Info">
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+          <ScalarProperty Name="staff_fname" ColumnName="staff_fname" />
+          <ScalarProperty Name="staff_lname" ColumnName="staff_lname" />
+          <ScalarProperty Name="account_info_id" ColumnName="account_info_id" />
+          <ScalarProperty Name="staff_monthly_paid" ColumnName="staff_monthly_paid" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sub_Category">
+      <EntityTypeMapping TypeName="SIS_DBModel.Sub_Category">
+        <MappingFragment StoreEntitySet="Sub_Category">
+          <ScalarProperty Name="sub_category_id" ColumnName="sub_category_id" />
+          <ScalarProperty Name="sub_category_name" ColumnName="sub_category_name" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier_Info">
+      <EntityTypeMapping TypeName="SIS_DBModel.Supplier_Info">
+        <MappingFragment StoreEntitySet="Supplier_Info">
+          <ScalarProperty Name="supplier_info_id" ColumnName="supplier_info_id" />
+          <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+          <ScalarProperty Name="supplier_contact_info" ColumnName="supplier_contact_info" />
+          <ScalarProperty Name="supplier_contact_person" ColumnName="supplier_contact_person" />
+          <ScalarProperty Name="supplier_address" ColumnName="supplier_address" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Menu_Roles">
+      <EntityTypeMapping TypeName="SIS_DBModel.System_Menu_Roles">
+        <MappingFragment StoreEntitySet="System_Menu_Roles">
+          <ScalarProperty Name="system_menu_roles_id" ColumnName="system_menu_roles_id" />
+          <ScalarProperty Name="account_info_id" ColumnName="account_info_id" />
+          <ScalarProperty Name="system_menus_id" ColumnName="system_menus_id" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Menus">
+      <EntityTypeMapping TypeName="SIS_DBModel.System_Menus">
+        <MappingFragment StoreEntitySet="System_Menus">
+          <ScalarProperty Name="system_menus_id" ColumnName="system_menus_id" />
+          <ScalarProperty Name="sm_description" ColumnName="sm_description" />
+          <ScalarProperty Name="sm_action_name" ColumnName="sm_action_name" />
+          <ScalarProperty Name="sm_controller" ColumnName="sm_controller" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="SIS_DBModel.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Current_Order_Items">
+      <EntityTypeMapping TypeName="SIS_DBModel.Current_Order_Items">
+        <MappingFragment StoreEntitySet="Current_Order_Items">
+          <ScalarProperty Name="product_purchase_id" ColumnName="product_purchase_id" />
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="purchase_qty" ColumnName="purchase_qty" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="sub_category_name" ColumnName="sub_category_name" />
+          <ScalarProperty Name="product_orig_price" ColumnName="product_orig_price" />
+          <ScalarProperty Name="product_qty" ColumnName="product_qty" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expenses_Type_vw">
+      <EntityTypeMapping TypeName="SIS_DBModel.Expenses_Type_vw">
+        <MappingFragment StoreEntitySet="Expenses_Type_vw">
+          <ScalarProperty Name="expenses_type" ColumnName="expenses_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Out_Of_Stock_Transactions_vw">
+      <EntityTypeMapping TypeName="SIS_DBModel.Out_Of_Stock_Transactions_vw">
+        <MappingFragment StoreEntitySet="Out_Of_Stock_Transactions_vw">
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="sub_category_name" ColumnName="sub_category_name" />
+          <ScalarProperty Name="product_orig_price" ColumnName="product_orig_price" />
+          <ScalarProperty Name="product_qty" ColumnName="product_qty" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+          <ScalarProperty Name="product_purchase_id" ColumnName="product_purchase_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Out_Of_Stock_vw">
+      <EntityTypeMapping TypeName="SIS_DBModel.Out_Of_Stock_vw">
+        <MappingFragment StoreEntitySet="Out_Of_Stock_vw">
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="sub_category_name" ColumnName="sub_category_name" />
+          <ScalarProperty Name="product_orig_price" ColumnName="product_orig_price" />
+          <ScalarProperty Name="product_qty" ColumnName="product_qty" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Info_vw">
+      <EntityTypeMapping TypeName="SIS_DBModel.Product_Info_vw">
+        <MappingFragment StoreEntitySet="Product_Info_vw">
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="sub_category_id" ColumnName="sub_category_id" />
+          <ScalarProperty Name="sub_category_name" ColumnName="sub_category_name" />
+          <ScalarProperty Name="product_orig_price" ColumnName="product_orig_price" />
+          <ScalarProperty Name="product_sold_price" ColumnName="product_sold_price" />
+          <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="product_qty" ColumnName="product_qty" />
+          <ScalarProperty Name="product_cut_off" ColumnName="product_cut_off" />
+          <ScalarProperty Name="product_remarks" ColumnName="product_remarks" />
+          <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+          <ScalarProperty Name="created_fname" ColumnName="created_fname" />
+          <ScalarProperty Name="created_lname" ColumnName="created_lname" />
+          <ScalarProperty Name="updated_fname" ColumnName="updated_fname" />
+          <ScalarProperty Name="updated_lname" ColumnName="updated_lname" />
+          <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+          <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="complete_info" ColumnName="complete_info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PT_OrderedList_vw">
+      <EntityTypeMapping TypeName="SIS_DBModel.PT_OrderedList_vw">
+        <MappingFragment StoreEntitySet="PT_OrderedList_vw">
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+          <ScalarProperty Name="purchase_name" ColumnName="purchase_name" />
+          <ScalarProperty Name="expected_date" ColumnName="expected_date" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+          <ScalarProperty Name="staff_fname" ColumnName="staff_fname" />
+          <ScalarProperty Name="staff_lname" ColumnName="staff_lname" />
+          <ScalarProperty Name="totalPT" ColumnName="totalPT" />
+          <ScalarProperty Name="no_item" ColumnName="no_item" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchase_Transactions_vw">
+      <EntityTypeMapping TypeName="SIS_DBModel.Purchase_Transactions_vw">
+        <MappingFragment StoreEntitySet="Purchase_Transactions_vw">
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+          <ScalarProperty Name="purchase_name" ColumnName="purchase_name" />
+          <ScalarProperty Name="expected_date" ColumnName="expected_date" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+          <ScalarProperty Name="product_purchase_id" ColumnName="product_purchase_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="purchase_qty" ColumnName="purchase_qty" />
+          <ScalarProperty Name="purchase_new_price" ColumnName="purchase_new_price" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="sub_category_name" ColumnName="sub_category_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reff_Out_Of_Stock_vw">
+      <EntityTypeMapping TypeName="SIS_DBModel.Reff_Out_Of_Stock_vw">
+        <MappingFragment StoreEntitySet="Reff_Out_Of_Stock_vw">
+          <ScalarProperty Name="product_purchase_id" ColumnName="product_purchase_id" />
+          <ScalarProperty Name="product_info_id" ColumnName="product_info_id" />
+          <ScalarProperty Name="purchase_qty" ColumnName="purchase_qty" />
+          <ScalarProperty Name="purchase_new_price" ColumnName="purchase_new_price" />
+          <ScalarProperty Name="active_flag" ColumnName="active_flag" />
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

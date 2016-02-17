@@ -1,0 +1,105 @@
+﻿@model IEnumerable<SIS.Models.PT_OrderedList_vw>
+
+@{
+    ViewBag.Title = "Ordered Lists";
+}
+<div class="ml-nav">
+    <div class="container">
+    <!-- Add Big Right Button
+    <a href="orderlist.html" class="btn btn-primary sub-nav-btn btn-icon waves-effect waves-circle waves-float" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Proceed to Order"><i class="md  md-add"></i></a>
+    -->
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="tab-nav ">
+                    <li class="active"><a  href="#" class="c-white">Order Lists</a></li>
+                    <li ><a  href="@Url.Action("Out_Of_Stocks", "Purchase")" class="c-white">Out of Stock items</a></li>
+                    <li><a  href="@Url.Action("Current_Order_Items", "Purchase")" class="c-white">Current Order Items</a></li>
+                </ul>
+            </div>
+        </div>
+               
+    </div>
+</div>
+<section id="content">
+                <div class="container">
+                    <div class="hs-content"  hs-hover="on">
+                        <div class="hs-item hs-item-head">
+                            <div class="row ">
+                                <div class="col-xs-11 ">
+                                        <div class="row ">
+                                            <div class="col-xs-3 hs-item-name ss-item-head">
+                                                Order
+                                            </div>
+                                            <div class="col-xs-3 hs-item-date ss-item-head text-center">
+                                                Supplier
+                                            </div>
+                                            <div class="col-xs-2 hs-item-date  ss-item-head text-center">
+                                                Date Ordered
+                                            </div>
+                                            <div class="col-xs-2 hs-item-staff ss-item-head text-center">
+                                                Expected Date
+                                            </div>
+                                            <div class="col-xs-2 hs-item-staff ss-item-head text-center">
+                                               Total
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        @foreach(var item in Model){
+                        <div class="hs-item">
+                            <div class="row">
+                                <div class="col-xs-11">
+                                    <a href="@Url.Action("Ordered_Lists_Items", "Purchase", new { id=item.pt_id})" >
+                                        <div class="row">
+                                            <div class="col-xs-3 hs-item-name">
+                                                @if (item.status == "Delivered")
+                                                { 
+                                                    <span class="hs-item-mode hs-item-mode-delivered"></span>
+                                                }else if(item.status=="Cancelled"){
+                                                    <span class="hs-item-mode hs-item-mode-delivery-cancelled"></span>
+                                                }else{
+                                                    <span class="hs-item-mode hs-item-mode-delivery"></span>
+                                                }
+                                               @Html.DisplayFor(modelItem=>item.purchase_name) <span class="badge badge-primary">@Html.DisplayFor(modelItem=>item.no_item)</span>
+                                            </div>
+                                            <div class="col-xs-3  hs-item-info text-center">
+                                                @Html.DisplayFor(modelItem=>item.supplier_name)
+                                            </div>
+                                            <div class="col-xs-2 hs-item-info text-center">
+                                                @Html.DisplayFor(modelItem=>item.purchase_date)
+                                            </div>
+                                            <div class="col-xs-2 hs-item-info text-center">
+                                                <span class="text-success">@String.Format("{0:d}",item.expected_date)</span>
+                                            </div>
+                                            <div class="col-xs-2 ml-sn hs-item-info text-center">
+                                                ₱ @Html.DisplayFor(modelItem=>item.totalPT)
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-xs-1 hs-item-actions">
+                                    @if (item.status == "Ordered")
+                                    {
+                                        <a href="@Url.Action("AllDelivery", "Purchase", new { id = item.pt_id})">
+                                            <button type="button" class="text-success waves-circle ss-check-btn btn-sm btn waves-effect"><i class="md md-check"></i>
+                                            </button>
+                                        </a>
+                                        <a href="@Url.Action("CancelledDelivery", "Purchase", new { id = item.pt_id})">
+                                            <button type="button" class="text-danger waves-circle ss-delete-btn btn-sm btn waves-effect"><i class="md md-clear"></i>
+                                            </button>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "sample";
+}
+<script src="~/Scripts/angular/angular.min.js"></script>
+<script src="~/Scripts/angular/App.js"></script>
+<script src="~/Scripts/angular/Account.js"></script>
+<h2>sample</h2>
+<div ng-app="MyApp" >
+    <div ng-controller="Account">
+        <div ng-repeat="acc in bag">
+            <p>Username: {{acc.username}}
+                <button type="button" data-toggle="modal" data-target="#modal" class="btn">Edit</button>
+                
+                <input type="button" data-ng-click="delete(acc.account_info_id)" value="Delete" />
+            </p>
+            <div id="modal" class="modal fade" role="dialog">
+                <div class="modal-dialog ml-modal">
+                    <div class="modal-content">
+                        <div class="modal-header">Edit Account</div>
+                        <div class="modal-body">
+                            <input type="text" value="{{acc.username}}"/>
+                            <input type="text" value="{{acc.password}}" class="hide"/>
+                            <select ng-model="form.model">
+                                <option ng-selected="{{acc == valueToCheckAgainst}}"
+                                        ng-repeat="item in items"
+                                        value="{{item}}">
+                                    {{item}}
+                                </option>
+                            </select>
+                            <select name="user_type">
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                            <select name="active_flag">
+                                <option value="True">True</option>
+                                <option value="False">False</option>
+                            </select>
+                            <input type="text" value="{{acc.password}}" class="hide" />
+                            <input type="text" value="{{acc.login}}" class="hide" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+</div>

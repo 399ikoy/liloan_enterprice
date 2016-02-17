@@ -1,0 +1,402 @@
+﻿@model PagedList.IPagedList<SIS.Models.Product_Info>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+<meta charset="utf-8">
+<link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".editModal").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-edit").dialog({
+                title: 'Edit Product',
+                autoOpen: false,
+                resizable: false,
+                height: 500,
+                width: 700,
+                show: { effect: 'drop', direction: "up" },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) {
+                    $(this).load(url);
+
+                },
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).dialog('close');
+                }
+
+            });
+
+            $("#dialog-edit").dialog('open');
+            return false;
+        });
+
+        $(".deleteModal").live("click", function (e) {
+        	var url = $(this).attr('href');
+        	$("#dialog-confirm").dialog({
+        		title: 'Are you sure you want to delete?',
+
+        		autoOpen: false,
+        		resizable: false,
+        		height: 500,
+        		width: 700,
+        		show: { effect: 'drop', direction: "up" },
+        		modal: true,
+        		draggable: true,
+        		open: function (event, ui) {
+        			$(this).load(url);
+
+        		},
+        		buttons: {
+        			"Close": function () {
+        				$(this).dialog("close");
+
+        			}
+        		},
+        		close: function (event, ui) {
+        			$(this).dialog('close');
+        		}
+        	});
+
+        	$("#dialog-confirm").dialog('open');
+        	return false;
+        });
+
+        $("#btncancel").live("click", function (e) {
+        	$("#dialog-confirm").dialog('close');
+
+        });
+ 
+        $(".detailModal").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-view").dialog({
+                title: 'Product Information',
+
+                autoOpen: false,
+                resizable: false,
+                height: 500,
+                width: 700,
+                show: { effect: 'drop', direction: "up" },
+                modal: true,
+                draggable: true,
+                open: function (event, ui) {
+                    $(this).load(url);
+ 
+                },
+                buttons: {
+                    "Close": function () {
+                        $(this).dialog("close");
+ 
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).dialog('close');
+                }
+            });
+ 
+            $("#dialog-view").dialog('open');
+            return false;
+        });
+ 
+        $("#btncancel").live("click", function (e) {
+            $("#dialog-edit").dialog('close');
+ 
+        });
+
+        //alert message implementation
+        $("#formAlert").hide();
+        $('form[name="register"]').on("submit", function (e) {
+            var product_desc = $(this).find('input[name="product_desc"]');
+            var product_orig_price = $(this).find('input[name="product_orig_price"]');
+            var product_sold_price = $(this).find('input[name="product_sold_price"]');
+            var product_code = $(this).find('input[name="product_code"]');
+            var product_qty = $(this).find('input[name="product_qty"]');
+            var product_cut_off = $(this).find('input[name="product_cut_off"]');
+            var category_id = $(this).find('input[name="category_id"]');
+
+            if ($.trim(product_desc.val()) === "" || $.trim(product_cut_off.val()) === "" || $.trim(product_orig_price.val()) === "" || $.trim(product_sold_price.val()) === "" || $.trim(product_code.val()) === "" || product_qty.val() == " ") {
+                e.preventDefault();
+                $("#formAlert").slideDown(400);
+            }
+        });
+
+        $(".alert").find(".close").on("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            $(this).closest(".alert").slideUp(400);
+        });
+
+    });
+</script>
+ <div class="ml-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="tab-nav ">
+                            <li class="active"><a  href="@Url.Action("Index", "MasterList")" class="c-white">Items<span class="badge badge-info">@ViewBag.count</span></a></li>
+                            <li ><a  href="@Url.Action("Index", "Unit")" class="c-white">Units<span class="badge badge-info">@ViewBag.unit</span></a></li>
+                            <li ><a  href="@Url.Action("viewCategory", "MasterList")" class="c-white">Categories<span class="badge badge-info">@ViewBag.category</span></a></li>
+                            <li ><a  href="@Url.Action("Index", "Supplier")" class="c-white">Suppliers<span class="badge badge-info">@ViewBag.supplier</span></a></li>
+                        </ul>  
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <ul class="ml-nav-right list-inline">
+                            <li class="ml-nav-search"><div class="fg-line">
+                                    @using (Html.BeginForm("Index", "MasterList",FormMethod.Get))
+                                    {
+                                        @Html.TextBox("search", ViewBag.CurrentFilter as string, new { @class = "form-control"})
+                                        <p style="display:none"><input type="submit"/></p>
+                                        
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <ul class="ml-nav-right list-inline">
+                            <li>
+                                <a href="@Url.Action("Index", "MasterList", new { sortOrder = ViewBag.SortItem, currentFilter=ViewBag.CurrentFilter})"><img src="/Images/img/ksis-icons/sort-icon.png" width="20"></a>
+                            </li>
+                            <li><a  data-toggle="modal" data-target="#myModal" href="#"><img src="/Images/img/ksis-icons/add-item-icon.png" width="23"></a></li>
+                        </ul>
+                    </div>
+                    <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Add New Product</h4>
+                              </div>
+                              <div class="modal-body">
+                                    @using (Html.BeginForm("Create", "MasterList", FormMethod.Get, new { @name = "register" }))
+                                    {
+                                        @Html.ValidationSummary(true)
+                                            <div id="formAlert" class="alert alert-danger">  
+                                                <a class="close">×</a>  
+                                                <strong>Warning!</strong> Make sure all fields are filled and try again.
+                                            </div>
+                                            <table>
+                                                <tr>
+                                                    <th>
+                                                        Product Description
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="product_desc" name="product_desc" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Category
+                                                    </th>
+                                                    <td>
+                                                        @Html.DropDownList("category_id", "Select Category")
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Sub Category
+                                                    </th>
+                                                    <td>
+                                                        @Html.DropDownList("sub_category_id")
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Original Price
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" id="product_orig_price" name="product_orig_price" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Sold Price
+                                                    <td>
+                                                        <input type="text" id="product_sold_price" name="product_sold_price" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Unit
+                                                    <td>
+                                                        @Html.DropDownList("unit_id")
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Product Code
+                                                    <td>
+                                                         <input type="text" id="product_code" name="product_code" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Product Quantity
+                                                    <td>
+                                                         <input type="text" id="product_qty" name="product_qty" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Cut off
+                                                    <td>
+                                                         <input type="text" id="product_cut_off" name="product_cut_off" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Remarks
+                                                    <td>
+                                                         <input type="text" id="product_remarks" name="product_remarks" >
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                       Supplier
+                                                    <td>
+                                                         @Html.DropDownList("supplier_info_id")
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        <button type="submit" class="btn btn-primary" id="addbtn">Add</button>
+                                    }
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+                    
+         <section id="content">
+                <div id="ml-section" class="container">
+                    <div class="hs-content">
+                        <div class="hs-item hs-item-head">
+                            <div class="row ">
+                                <div class="col-xs-10 ">
+                                        <div class="row ">
+                                            <div class="col-xs-3 hs-item-name ss-item-head">
+                                                Item
+                                            </div>
+                                            <div class="col-xs-3 hs-item-date ss-item-head">
+                                               Category
+                                            </div>
+                                            <div class="col-xs-2 hs-item-staff  ss-item-head">
+                                               Price <small>/ unit</small>
+                                            </div>
+                                            <div class="col-xs-2 hs-item-date ss-item-head">
+                                               Stock
+                                            </div>
+                                            <div class="col-xs-2 hs-item-date ss-item-head">
+                                               Limit
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                             <div class="hs-item">
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <a   href="#ml-item-view" data-toggle="modal"  >
+                                            <div class="row">
+                                                <div class="col-xs-3 hs-item-name">
+                                                @if (item.active_flag == true) 
+                                                    { 
+                                                        <i class="md md-check text-success"></i>
+                                                    }else{
+                                                        <i class="md md-clear text-danger"></i>
+                                                    }&emsp;
+                                                   @Html.DisplayFor(modelItem => item.product_desc) <small>@Html.DisplayFor(modelItem => item.product_code)</small>
+                                                </div>
+                                                <div class="col-xs-3 hs-item-info">
+                                                     @Html.DisplayFor(modelItem => item.Category.category_name) — @Html.DisplayFor(modelItem => item.Sub_Category.sub_category_name)
+                                                </div>
+                                                <div class="col-xs-2 hs-item-info">
+                                                    <span class="text-green">₱@Html.DisplayFor(modelItem => item.product_sold_price)</span>
+                                                </div>
+                                                <div class="col-xs-2  ml-sn hs-item-info">
+                                                    @if (item.product_qty <= item.product_cut_off)
+                                                    {
+                                                        <span class="c-red">@Html.DisplayFor(modelItem => item.product_qty) <small>@Html.DisplayFor(modelItem => item.Unit.unit_code)</small></span>
+                                                    }
+                                                    else 
+                                                    { 
+                                                        @Html.DisplayFor(modelItem => item.product_qty) <small>@Html.DisplayFor(modelItem => item.Unit.unit_code)</small>
+                                                    }
+                                                    
+                                                </div>
+                                                <div class="col-xs-2  hs-item-info">
+                                                    @Html.DisplayFor(modelItem => item.product_cut_off) 
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-2 hs-item-actions">
+                                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                        @Ajax.ActionLink("Edit", "Edit", new { id = item.product_info_id },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "Get",
+                                        }, new { @class = "editModal" })</button>
+                                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                        @Ajax.ActionLink("View", "Details", new { id = item.product_info_id },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "Get",
+                                        }, new { @class = "detailModal" })</button>
+                                        <button class="waves-circle ss-delete-btn btn-sm btn waves-effect">
+                                        @Ajax.ActionLink("Delete", "Delete", new { id = item.product_info_id },
+                                        new AjaxOptions
+                                        {
+                                            HttpMethod = "Get",
+                                        }, new { @class = "deleteModal" })</button>
+
+                                        @*<button  type="button" class="waves-circle ss-delete-btn btn-sm btn waves-effect"><i class="md md-clear"></i></button>*@
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <ul class="fw-footer pagination">
+                             @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                           @* <li class="disabled"><a href="" aria-label="Previous"><i class="md md-chevron-left"></i></a></li>
+                            <li class="active"><a href="">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="">2</a></li>
+                            <li><a href="">3</a></li>
+                            <li><a href="">4</a></li>
+                            <li><a href="">5</a></li>
+                            <li><a href="" aria-label="Next"><i class="md md-chevron-right"></i></a></li>*@
+                         </ul>
+                    </div>
+                </div>
+
+            </section>
+<div id="dialog-confirm" style="display: none"></div>
+<div id="dialog-edit" style="display: none"></div>
+<div id="dialog-view" style="display: none"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
